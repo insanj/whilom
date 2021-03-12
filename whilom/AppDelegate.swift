@@ -13,7 +13,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - properties
     // MARK: state
     private var rememberedPassword: String?
-    private var shouldUseRememberedPassword: Bool = false
     
     // MARK: modals that need to be referenced twice
     private var passwordRememberAlert: NSAlert?
@@ -73,14 +72,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var enableSleepScript: NSAppleScript?
     private func buildEnableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
+        var shouldAppend = false
         if let pass = password {
-            appendString = """
-            password "\(pass)"
-            """.trimmingCharacters(in: .newlines)
+            shouldAppend = true
+            appendString = " user name \"\(NSUserName())\" password \"\(pass)\""
         }
         
+        
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 0" with administrator privileges\(appendString)
+        do shell script "sudo pmset -a disablesleep 0"\(shouldAppend ? appendString : "") with administrator privileges
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -93,14 +93,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var disableSleepScript: NSAppleScript?
     private func buildDisableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
+        var shouldAppend = false
         if let pass = password {
-            appendString = """
-            password "\(pass)"
-            """.trimmingCharacters(in: .newlines)
+            shouldAppend = true
+            appendString = " user name \"\(NSUserName())\" password \"\(pass)\""
         }
         
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 1" with administrator privileges\(appendString)
+        do shell script "sudo pmset -a disablesleep 1"\(shouldAppend ? appendString : "") with administrator privileges
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -328,7 +328,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         alert.informativeText = "Otherwise, we'll ask every now and then when you use whilom."
         
         let passwordTextField = NSSecureTextField(string: "")
-        passwordTextField.placeholderString = "Your Local Computer Password"
+        passwordTextField.placeholderString = "\(NSUserName())'s local computer password"
         passwordTextField.frame = CGRect(x: 0, y: 0, width: 240, height: 32)
         passwordTextField.maximumNumberOfLines = 1
         passwordTextField.delegate = self
@@ -346,7 +346,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func rememberPasswordConfirmClicked(_ sender: NSButton) {
-        shouldUseRememberedPassword = true
         passwordRememberAlert?.buttons.last?.performClick(sender)
         
         enableSleepScript = buildEnableSleepScript(rememberedPassword)
