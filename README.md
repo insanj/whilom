@@ -1,5 +1,8 @@
+![](whilom/Assets.xcassets/AppIcon.appiconset/icon_128x128@2x.png)
+
 # whilom
-🪄 keep big sur awake when the lid is closed
+🪄 keep your mac awake even when the lid is closed
+
 
 ## Authors
 

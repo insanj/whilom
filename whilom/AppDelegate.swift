@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
     // MARK: scripts, states
     var isSleepEnabled = true
-    private var isJustMessingAround = true
+    private var isJustMessingAround = false
   
     let enableSleepScript: NSAppleScript? = {
         let myAppleScript = """
@@ -210,15 +210,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let themeName = effectiveAppearance?.name.rawValue.lowercased()
         let containsDark = themeName?.contains("dark")
         return containsDark ?? false
-        //         if InterfaceStyle() == .Dark {
     }
   
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-//        guard let item = object as? NSStatusItem, item == whilomStatusItem.button else {
-//            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-//            return
-//        }
-//
         themeifyMenuItems()
     }
   
