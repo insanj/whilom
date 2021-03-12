@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: scripts
     let enableSleepScript: NSAppleScript? = {
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 1" with administrator privileges
+        do shell script "sudo pmset -a disablesleep 0" with administrator privileges
         """
         
         var error: NSDictionary?
