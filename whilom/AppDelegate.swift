@@ -70,31 +70,45 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isSleepEnabled = true
     private var isJustMessingAround = false
   
-    let enableSleepScript: NSAppleScript? = {
+    var enableSleepScript: NSAppleScript?
+    private func buildEnableSleepScript(_ password: String?=nil) -> NSAppleScript? {
+        var appendString: String = ""
+        if let pass = password {
+            appendString = """
+            password "\(pass)"
+            """.trimmingCharacters(in: .newlines)
+        }
+        
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 0" with administrator privileges
+        do shell script "sudo pmset -a disablesleep 0" with administrator privileges\(appendString)
         """
         
-        var error: NSDictionary?
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
             return nil
         }
         
         return scriptObject
-    }()
+    }
   
-    let disableSleepScript: NSAppleScript? = {
+    var disableSleepScript: NSAppleScript?
+    private func buildDisableSleepScript(_ password: String?=nil) -> NSAppleScript? {
+        var appendString: String = ""
+        if let pass = password {
+            appendString = """
+            password "\(pass)"
+            """.trimmingCharacters(in: .newlines)
+        }
+        
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 1" with administrator privileges
+        do shell script "sudo pmset -a disablesleep 1" with administrator privileges\(appendString)
         """
         
-        var error: NSDictionary?
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
             return nil
         }
         
         return scriptObject
-    }()
+    }
   
     // MARK: - anim props
     let animDuration: CFTimeInterval = 0.125
@@ -105,15 +119,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
     // MARK: - runtime
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-          whilomStatusItem.button?.action = #selector(whilomClicked(_:))
-          whilomStatusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+        whilomStatusItem.button?.action = #selector(whilomClicked(_:))
+        whilomStatusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
       
-          whilomStatusItem.button?.addObserver(self, forKeyPath: "effectiveAppearance", options: .new, context: nil)
-          themeifyMenuItems()
+        whilomStatusItem.button?.addObserver(self, forKeyPath: "effectiveAppearance", options: .new, context: nil)
+        themeifyMenuItems()
       
-          setupRightClickMenu()
+        setupRightClickMenu()
+        
+        enableSleepScript = buildEnableSleepScript()
+        disableSleepScript = buildDisableSleepScript()
       
-          showPasswordRememberAlert()
+        showPasswordRememberAlert()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -189,14 +206,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: execute scripts based on state
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
-            if shouldUseRememberedPassword, let remembered = rememberedPassword {
-                let result = WhilomCommand(password: remembered, type: .disableSleep).runTask()
-                if let error = result.errorOutput {
-                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
-                    alert.runModal()
-                    return false
-                }
-            } else {
+//            if shouldUseRememberedPassword, let remembered = rememberedPassword {
+////                let result = WhilomCommand(password: remembered, type: .disableSleep).runTask()
+//                if let error = result.errorOutput {
+//                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
+//                    alert.runModal()
+//                    return false
+//                }
+//            } else {
                 var error: NSDictionary?
                 disableSleepScript?.executeAndReturnError(&error)
 
@@ -205,7 +222,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     alert.runModal()
                     return false
                 }
-            }
+//            }
         }
       
         performSleepAnimation(forwards: true)
@@ -215,14 +232,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
-            if shouldUseRememberedPassword, let remembered = rememberedPassword {
-                let result = WhilomCommand(password: remembered, type: .enableSleep).runTask()
-                if let error = result.errorOutput {
-                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
-                    alert.runModal()
-                    return false
-                }
-            } else {
+//            if shouldUseRememberedPassword, let remembered = rememberedPassword {
+//                let result = WhilomCommand(password: remembered, type: .enableSleep).runTask()
+//                if let error = result.errorOutput {
+//                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
+//                    alert.runModal()
+//                    return false
+//                }
+//            } else {
                 var error: NSDictionary?
                 enableSleepScript?.executeAndReturnError(&error)
 
@@ -231,7 +248,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     alert.runModal()
                     return false
                 }
-            }
+//            }
         }
 
         performSleepAnimation(forwards: false)
@@ -314,8 +331,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         passwordTextField.placeholderString = "Your Local Computer Password"
         passwordTextField.frame = CGRect(x: 0, y: 0, width: 240, height: 32)
         passwordTextField.maximumNumberOfLines = 1
-//        passwordTextField.target = self
-//        passwordTextField.action = #selector(rememberPasswordTextFieldChanged(_:))
         passwordTextField.delegate = self
         
         alert.accessoryView = passwordTextField
@@ -326,7 +341,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         alert.addButton(withTitle: "🤫 Ask Me Later")
         
-        
         alert.delegate = self
         alert.runModal()
     }
@@ -334,11 +348,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func rememberPasswordConfirmClicked(_ sender: NSButton) {
         shouldUseRememberedPassword = true
         passwordRememberAlert?.buttons.last?.performClick(sender)
+        
+        enableSleepScript = buildEnableSleepScript(rememberedPassword)
+        disableSleepScript = buildDisableSleepScript(rememberedPassword)
     }
-    
-//    @objc func rememberPasswordTextFieldChanged(_ sender: NSTextField) {
-//        rememberedPassword = sender.stringValue
-//    }
 }
 
 extension AppDelegate: NSTextFieldDelegate {
@@ -353,7 +366,6 @@ extension AppDelegate: NSTextFieldDelegate {
 
 extension AppDelegate: NSAlertDelegate {
     func alertShowHelp(_ alert: NSAlert) -> Bool {
-        
         let help = NSAlert()
         help.icon = NSImage(named: NSImage.Name("whilom"))
         help.messageText = "What is this?"

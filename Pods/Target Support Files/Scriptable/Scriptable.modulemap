@@ -1,6 +1,0 @@
-framework module Scriptable {
-  umbrella header "Scriptable-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -3,18 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */; };
 		1E5B4D0825FB779900092422 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5B4D0725FB779900092422 /* Main.storyboard */; };
 		1E5B4D6A25FBFE4B00092422 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D6925FBFE4B00092422 /* Cocoa.framework */; };
-		1E5B4DD025FC0C9900092422 /* WhilomCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4DCF25FC0C9900092422 /* WhilomCommands.swift */; };
 		1E5B4DD625FC0DBF00092422 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4DD525FC0DBF00092422 /* String+Extension.swift */; };
 		1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4E20D24F97E240097C32C /* AppDelegate.swift */; };
 		1EE4E21224F97E250097C32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4E21124F97E250097C32C /* Assets.xcassets */; };
-		44D792C2659C18F2BC797497 /* Pods_whilom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBDE10C60B6F6B82DEB7E8EA /* Pods_whilom.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,7 +38,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		17C626664C821F312A6EBD7E /* Pods-whilom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whilom.debug.xcconfig"; path = "Target Support Files/Pods-whilom/Pods-whilom.debug.xcconfig"; sourceTree = "<group>"; };
 		1E2FA93525FB12FE00D7D123 /* whilom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilom.entitlements; sourceTree = "<group>"; };
 		1E396DB025FB138C008E2122 /* whilomDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilomDebug.entitlements; sourceTree = "<group>"; };
 		1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
@@ -50,14 +47,11 @@
 		1E5B4D3925FBFC5A00092422 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1E5B4D3B25FBFC5E00092422 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1E5B4D6925FBFE4B00092422 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		1E5B4DCF25FC0C9900092422 /* WhilomCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhilomCommands.swift; sourceTree = "<group>"; };
 		1E5B4DD525FC0DBF00092422 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1EE4E20A24F97E240097C32C /* whilom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whilom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4E20D24F97E240097C32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EE4E21124F97E250097C32C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EE4E21624F97E250097C32C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEC421078094E8700F43471C /* Pods-whilom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-whilom.release.xcconfig"; path = "Target Support Files/Pods-whilom/Pods-whilom.release.xcconfig"; sourceTree = "<group>"; };
-		EBDE10C60B6F6B82DEB7E8EA /* Pods_whilom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_whilom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +60,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E5B4D6A25FBFE4B00092422 /* Cocoa.framework in Frameworks */,
-				44D792C2659C18F2BC797497 /* Pods_whilom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,7 +73,6 @@
 				1E5B4D3B25FBFC5E00092422 /* Security.framework */,
 				1E5B4D3925FBFC5A00092422 /* Foundation.framework */,
 				1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */,
-				EBDE10C60B6F6B82DEB7E8EA /* Pods_whilom.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -91,7 +83,6 @@
 				1EE4E20C24F97E240097C32C /* whilom */,
 				1EE4E20B24F97E240097C32C /* Products */,
 				1E5B4D0F25FBFA4800092422 /* Frameworks */,
-				7C396907B77AC28BF3B4229B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				1EE4E20D24F97E240097C32C /* AppDelegate.swift */,
-				1E5B4DCF25FC0C9900092422 /* WhilomCommands.swift */,
 				1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */,
 				1E5B4DD525FC0DBF00092422 /* String+Extension.swift */,
 				1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */,
@@ -120,15 +110,6 @@
 			path = whilom;
 			sourceTree = "<group>";
 		};
-		7C396907B77AC28BF3B4229B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				17C626664C821F312A6EBD7E /* Pods-whilom.debug.xcconfig */,
-				CEC421078094E8700F43471C /* Pods-whilom.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,13 +117,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EE4E21A24F97E250097C32C /* Build configuration list for PBXNativeTarget "whilom" */;
 			buildPhases = (
-				E9B73EDF5DF025E13C08DD68 /* [CP] Check Pods Manifest.lock */,
 				1EE4E20624F97E240097C32C /* Sources */,
 				1EE4E20724F97E240097C32C /* Frameworks */,
 				1EE4E20824F97E240097C32C /* Resources */,
 				1E5B4D3625FBFC4000092422 /* Embed XPC Services */,
 				1E5B4D6E25FBFE9100092422 /* CopyFiles */,
-				11C8FC862EE7920B082FCAE7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,48 +178,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		11C8FC862EE7920B082FCAE7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-whilom/Pods-whilom-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-whilom/Pods-whilom-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-whilom/Pods-whilom-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E9B73EDF5DF025E13C08DD68 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-whilom-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		1EE4E20624F97E240097C32C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -249,7 +186,6 @@
 				1E5B4DD625FC0DBF00092422 /* String+Extension.swift in Sources */,
 				1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */,
 				1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */,
-				1E5B4DD025FC0C9900092422 /* WhilomCommands.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +309,6 @@
 		};
 		1EE4E21B24F97E250097C32C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17C626664C821F312A6EBD7E /* Pods-whilom.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -401,7 +336,6 @@
 		};
 		1EE4E21C24F97E250097C32C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEC421078094E8700F43471C /* Pods-whilom.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
