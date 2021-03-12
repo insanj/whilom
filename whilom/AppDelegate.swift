@@ -225,7 +225,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             NSAnimationContext.beginGrouping()
             NSAnimationContext.current.duration = self.animDuration
             self.whilomStatusItem.button?.image = forwards ? imageHattieOn3 : imageHattieOff
-//            self.whilomStatusItem.button?.alternateImage = forwards ? imageHattieOn3.inverted() : imageHattieOff.inverted()
             NSAnimationContext.endGrouping()
         }
     }
@@ -235,33 +234,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       let inverted = image.inverted()
       return inverted
     }
-
-//    static private func imageWithInverseColor(_ image: NSImage) -> NSImage {
-//        let imageSize = image.size
-//        image.lockFocus()
-//        let bitmap = NSBitmapImageRep(focusedViewRect: NSMakeRect(0, 0, imageSize.width, imageSize.height))!
-//        image.unlockFocus()
-//        let data = bitmap.tiffRepresentation!
-////        let inverted = CIImage(data: data)
-//        let nsImage = NSImage(data: data)!
-//        return nsImage
-//    }
-//    static private func imageWithInverseColor(_ image: NSImage) -> NSImage {
-//      let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil)!
-//      let coreImage = CIImage(cgImage: cgImage)
-//      let filter = CIFilter(name: "CIColorInvert")
-//      filter?.setValue(coreImage, forKey: kCIInputImageKey)
-//      let result = filter?.value(forKey: kCIOutputImageKey) as! CGImage
-//      let resultImage = NSImage(cgImage: result, size: image.size)
-//      return resultImage
-//    }
-//    + (UIImage *)inverseColor:(UIImage *)image {
-//        CIImage *coreImage = [CIImage imageWithCGImage:image.CGImage];
-//        CIFilter *filter = [CIFilter filterWithName:@"CIColorInvert"];
-//        [filter setValue:coreImage forKey:kCIInputImageKey];
-//        CIImage *result = [filter valueForKey:kCIOutputImageKey];
-//        return [UIImage imageWithCIImage:result];
-//    }
 }
 
 extension AppDelegate: NSMenuDelegate, NSMenuItemValidation {
