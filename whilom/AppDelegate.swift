@@ -84,7 +84,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }()
   
     // MARK: - anim props
-    let animDuration: CFTimeInterval = 0.15
+    let animDuration: CFTimeInterval = 0.125
     var imageHattieOff: NSImage?
     var imageHattieOn1: NSImage?
     var imageHattieOn2: NSImage?
