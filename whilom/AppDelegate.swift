@@ -19,8 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var hattieOffImage = NSImage(named: NSImage.Name("hattie off"))!
         hattieOffImage.isTemplate = false
               
-        if InterfaceStyle() == .Dark {
-          hattieOffImage = imageWithInverseColor(hattieOffImage)
+        if AppDelegate.isDarkMode(statusItem) {
+            hattieOffImage = imageWithInverseColor(hattieOffImage)
         }
       
 //        statusItem.button?.alternateImage = hattieOffImage
@@ -49,6 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
     // MARK: scripts, states
     var isSleepEnabled = true
+    private var isJustMessingAround = true
   
     let enableSleepScript: NSAppleScript? = {
         let myAppleScript = """
@@ -78,54 +79,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
     // MARK: - anim props
     let animDuration: CFTimeInterval = 0.15
-    let imageHattieOff: NSImage = {
-        var image = NSImage(named: NSImage.Name("hattie off"))!
-        image.isTemplate = false
-        
-        if InterfaceStyle() == .Dark {
-          image = imageWithInverseColor(image)
-        }
-      
-        return image
-    }()
-  
-    let imageHattieOn1: NSImage = {
-        var image = NSImage(named: NSImage.Name("hattie on 1"))!
-        image.isTemplate = false
-      
-        if InterfaceStyle() == .Dark {
-          image = imageWithInverseColor(image)
-        }
-      
-        return image
-    }()
-
-    let imageHattieOn2: NSImage = {
-        var image = NSImage(named: NSImage.Name("hattie on 2"))!
-        image.isTemplate = false
-        
-        if InterfaceStyle() == .Dark {
-          image = imageWithInverseColor(image)
-        }
-      
-        return image
-    }()
-
-    let imageHattieOn3: NSImage = {
-        var image = NSImage(named: NSImage.Name("hattie on 3"))!
-        image.isTemplate = false
-      
-        if InterfaceStyle() == .Dark {
-          image = imageWithInverseColor(image)
-        }
-      
-        return image
-    }()
+    var imageHattieOff: NSImage?
+    var imageHattieOn1: NSImage?
+    var imageHattieOn2: NSImage?
+    var imageHattieOn3: NSImage?
   
     // MARK: - runtime
     func applicationDidFinishLaunching(_ aNotification: Notification) {
           whilomStatusItem.button?.action = #selector(whilomClicked(_:))
           whilomStatusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+      
+          whilomStatusItem.button?.addObserver(self, forKeyPath: "effectiveAppearance", options: .new, context: nil)
+          themeifyMenuItems()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -178,13 +143,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: execute scripts based on state
     @objc private func disableSleep() -> Bool {
-        var error: NSDictionary?
-        disableSleepScript?.executeAndReturnError(&error)
+        if !isJustMessingAround {
+            var error: NSDictionary?
+            disableSleepScript?.executeAndReturnError(&error)
 
-        if let error = error {
-            let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-            alert.runModal()
-            return false
+            if let error = error {
+                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+                alert.runModal()
+                return false
+            }
         }
       
         performSleepAnimation(forwards: true)
@@ -193,13 +160,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc private func enableSleep() -> Bool {
-        var error: NSDictionary?
-        enableSleepScript?.executeAndReturnError(&error)
+        if !isJustMessingAround {
+            var error: NSDictionary?
+            enableSleepScript?.executeAndReturnError(&error)
 
-        if let error = error {
-            let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-            alert.runModal()
-            return false
+            if let error = error {
+                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+                alert.runModal()
+                return false
+            }
         }
 
         performSleepAnimation(forwards: false)
@@ -231,8 +200,48 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
     // MARK: - image handling
     static private func imageWithInverseColor(_ image: NSImage) -> NSImage {
-      let inverted = image.inverted()
-      return inverted
+        let inverted = image.inverted()
+        return inverted
+    }
+  
+    // MARK: - dark/light handling
+    static func isDarkMode(_ statusItem: NSStatusItem) -> Bool {
+        let effectiveAppearance = statusItem.button?.effectiveAppearance
+        let themeName = effectiveAppearance?.name.rawValue.lowercased()
+        let containsDark = themeName?.contains("dark")
+        return containsDark ?? false
+        //         if InterfaceStyle() == .Dark {
+    }
+  
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+//        guard let item = object as? NSStatusItem, item == whilomStatusItem.button else {
+//            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+//            return
+//        }
+//
+        themeifyMenuItems()
+    }
+  
+    private func themeifyMenuItems() {
+        var baseImage = isSleepEnabled ? NSImage(named: NSImage.Name("hattie off"))! : NSImage(named: NSImage.Name("hattie on 3"))!
+        var baseHattieOffImage = NSImage(named: NSImage.Name("hattie off"))!
+        var baseHattieOne1Image = NSImage(named: NSImage.Name("hattie on 1"))!
+        var baseHattieOne2Image = NSImage(named: NSImage.Name("hattie on 2"))!
+        var baseHattieOne3Image = NSImage(named: NSImage.Name("hattie on 3"))!
+
+        if AppDelegate.isDarkMode(whilomStatusItem) {
+            baseImage = AppDelegate.imageWithInverseColor(baseImage)
+            baseHattieOffImage = AppDelegate.imageWithInverseColor(baseHattieOffImage)
+            baseHattieOne1Image =  AppDelegate.imageWithInverseColor(baseHattieOne1Image)
+            baseHattieOne2Image =  AppDelegate.imageWithInverseColor(baseHattieOne2Image)
+            baseHattieOne3Image =  AppDelegate.imageWithInverseColor(baseHattieOne3Image)
+        }
+      
+        whilomStatusItem.button?.image = baseImage
+        imageHattieOff = baseHattieOffImage
+        imageHattieOn1 = baseHattieOne1Image
+        imageHattieOn2 = baseHattieOne2Image
+        imageHattieOn3 = baseHattieOne3Image
     }
 }
 
