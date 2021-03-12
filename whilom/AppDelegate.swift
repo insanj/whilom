@@ -41,6 +41,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return NSMenuItem(title: "💝 whilom \(versionString)", action: nil, keyEquivalent: "")
     }()
   
+    let aboutMenuItem: NSMenuItem = {
+        let quitMenuItem = NSMenuItem()
+        quitMenuItem.title = "About"
+        return quitMenuItem
+    }()
+
     let quitMenuItem: NSMenuItem = {
         let quitMenuItem = NSMenuItem()
         quitMenuItem.title = "Quit"
@@ -91,6 +97,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       
           whilomStatusItem.button?.addObserver(self, forKeyPath: "effectiveAppearance", options: .new, context: nil)
           themeifyMenuItems()
+      
+          setupRightClickMenu()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -111,20 +119,39 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: - right click handlers
-    func createWhilomMenu() {
+  private func setupRightClickMenu() {
         titleMenuItem.isEnabled = false
         menu.addItem(titleMenuItem)
+        menu.delegate = self
 
         menu.addItem(NSMenuItem.separator())
 
+        aboutMenuItem.action = #selector(aboutWhilom(_:))
+        aboutMenuItem.target = self
+        menu.addItem(aboutMenuItem)
+      
         quitMenuItem.action = #selector(quitWhilom(_:))
         quitMenuItem.target = self
         menu.addItem(quitMenuItem)
-      
+    }
+  
+    private func createWhilomMenu() {
         whilomStatusItem.menu = menu
-        
         let point = NSApp.currentEvent?.window?.frame.origin ?? .zero
         menu.popUp(positioning: titleMenuItem, at: point, in: nil)
+    }
+  
+    private func destroyWhilomMenu() {
+        whilomStatusItem.menu = nil
+    }
+  
+    @objc func aboutWhilom(_ sender: Any) {
+        let aboutAlert = NSAlert()
+        aboutAlert.icon = NSImage(named: NSImage.Name("whilom"))
+        aboutAlert.messageText = "whilom"
+        aboutAlert.informativeText = "🪄 keep your mac awake even when the lid is closed\n\n💭 whi·lom, meaning \"at times,\" having once been\n\n🎉 thanks for checking out our app! follow us @SnowcodeDesign\n\n© 2021 Snowcode, LLC"
+        aboutAlert.addButton(withTitle: "👋 Sweet dreams!")
+        aboutAlert.runModal()
     }
   
     @objc func quitWhilom(_ sender: Any) -> Bool {
@@ -133,7 +160,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: - left click handler
-    private func toggleSleep() {
+    func toggleSleep() {
         if isSleepEnabled {
             let _ = disableSleep()
         } else {
@@ -142,7 +169,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: execute scripts based on state
-    @objc private func disableSleep() -> Bool {
+    @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
             disableSleepScript?.executeAndReturnError(&error)
@@ -159,7 +186,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
     
-    @objc private func enableSleep() -> Bool {
+    @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
             enableSleepScript?.executeAndReturnError(&error)
@@ -205,7 +232,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   
     // MARK: - dark/light handling
-    static func isDarkMode(_ statusItem: NSStatusItem) -> Bool {
+    static private func isDarkMode(_ statusItem: NSStatusItem) -> Bool {
         let effectiveAppearance = statusItem.button?.effectiveAppearance
         let themeName = effectiveAppearance?.name.rawValue.lowercased()
         let containsDark = themeName?.contains("dark")
@@ -239,8 +266,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
+
 extension AppDelegate: NSMenuDelegate, NSMenuItemValidation {
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         return true
+    }
+  
+    func menuDidClose(_ menu: NSMenu) {
+        destroyWhilomMenu()
     }
 }
