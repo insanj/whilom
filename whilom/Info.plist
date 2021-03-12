@@ -40,5 +40,10 @@
 	<true/>
 	<key>NSSystemAdministrationUsageDescription</key>
 	<string>Enable or disable your Mac from sleeping.</string>
+	<key>SMPrivilegedExecutables</key>
+	<dict>
+		<key>com.insanj.whilom.EBAS.HelperTool</key>
+		<string>anchor apple generic and identifier &quot;com.insanj.whilom.EBAS.HelperTool&quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = SKMME9E2Y8)</string>
+	</dict>
 </dict>
 </plist>

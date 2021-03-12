@@ -8,38 +8,141 @@
 
 /* Begin PBXBuildFile section */
 		1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */; };
+		1E5B4D0025FB74D700092422 /* Authorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4CFF25FB74D700092422 /* Authorize.m */; };
+		1E5B4D0825FB779900092422 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5B4D0725FB779900092422 /* Main.storyboard */; };
+		1E5B4D1125FBFA4800092422 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */; };
+		1E5B4D1325FBFA5800092422 /* AuthorizedAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1225FBFA5800092422 /* AuthorizedAppDelegate.swift */; };
+		1E5B4D1725FBFB1A00092422 /* AuthorizedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1625FBFB1A00092422 /* AuthorizedAppDelegate.m */; };
+		1E5B4D1D25FBFB7C00092422 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1B25FBFB7C00092422 /* Common.m */; };
+		1E5B4D4625FBFD2600092422 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D4525FBFD2600092422 /* main.swift */; };
+		1E5B4D5225FBFD4000092422 /* HelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D4E25FBFD4000092422 /* HelperTool.m */; };
 		1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4E20D24F97E240097C32C /* AppDelegate.swift */; };
 		1EE4E21224F97E250097C32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4E21124F97E250097C32C /* Assets.xcassets */; };
-		1EE4E21524F97E250097C32C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4E21324F97E250097C32C /* Main.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E5B4D3625FBFC4000092422 /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E5B4D4125FBFD2600092422 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1E2FA93525FB12FE00D7D123 /* whilom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilom.entitlements; sourceTree = "<group>"; };
 		1E396DB025FB138C008E2122 /* whilomDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilomDebug.entitlements; sourceTree = "<group>"; };
 		1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
+		1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "whilom-Bridging-Header.h"; sourceTree = "<group>"; };
+		1E5B4CFF25FB74D700092422 /* Authorize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Authorize.m; sourceTree = "<group>"; };
+		1E5B4D0525FB750800092422 /* Authorize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Authorize.h; sourceTree = "<group>"; };
+		1E5B4D0725FB779900092422 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		1E5B4D1225FBFA5800092422 /* AuthorizedAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedAppDelegate.swift; sourceTree = "<group>"; };
+		1E5B4D1625FBFB1A00092422 /* AuthorizedAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthorizedAppDelegate.m; sourceTree = "<group>"; };
+		1E5B4D1925FBFB3300092422 /* AuthorizedAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthorizedAppDelegate.h; sourceTree = "<group>"; };
+		1E5B4D1B25FBFB7C00092422 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		1E5B4D1C25FBFB7C00092422 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		1E5B4D3925FBFC5A00092422 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1E5B4D3B25FBFC5E00092422 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1E5B4D4325FBFD2600092422 /* HelperTool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HelperTool; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E5B4D4525FBFD2600092422 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		1E5B4D4C25FBFD3900092422 /* HelperTool-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HelperTool-Info.plist"; sourceTree = "<group>"; };
+		1E5B4D4D25FBFD4000092422 /* HelperTool-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HelperTool-Bridging-Header.h"; sourceTree = "<group>"; };
+		1E5B4D4E25FBFD4000092422 /* HelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTool.m; sourceTree = "<group>"; };
+		1E5B4D5025FBFD4000092422 /* HelperTool-Launchd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HelperTool-Launchd.plist"; sourceTree = "<group>"; };
+		1E5B4D5125FBFD4000092422 /* HelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperTool.h; sourceTree = "<group>"; };
 		1EE4E20A24F97E240097C32C /* whilom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whilom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4E20D24F97E240097C32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EE4E21124F97E250097C32C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1EE4E21424F97E250097C32C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1EE4E21624F97E250097C32C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1EE4E20724F97E240097C32C /* Frameworks */ = {
+		1E5B4D4025FBFD2600092422 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1EE4E20724F97E240097C32C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E5B4D1125FBFA4800092422 /* ServiceManagement.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E5B4D0F25FBFA4800092422 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E5B4D3B25FBFC5E00092422 /* Security.framework */,
+				1E5B4D3925FBFC5A00092422 /* Foundation.framework */,
+				1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E5B4D1A25FBFB4100092422 /* authorization */ = {
+			isa = PBXGroup;
+			children = (
+				1E5B4D1225FBFA5800092422 /* AuthorizedAppDelegate.swift */,
+				1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */,
+				1E5B4D1925FBFB3300092422 /* AuthorizedAppDelegate.h */,
+				1E5B4D1625FBFB1A00092422 /* AuthorizedAppDelegate.m */,
+				1E5B4D0525FB750800092422 /* Authorize.h */,
+				1E5B4CFF25FB74D700092422 /* Authorize.m */,
+			);
+			path = authorization;
+			sourceTree = "<group>";
+		};
+		1E5B4D4425FBFD2600092422 /* HelperTool */ = {
+			isa = PBXGroup;
+			children = (
+				1E5B4D4C25FBFD3900092422 /* HelperTool-Info.plist */,
+				1E5B4D5025FBFD4000092422 /* HelperTool-Launchd.plist */,
+				1E5B4D4525FBFD2600092422 /* main.swift */,
+				1E5B4D5125FBFD4000092422 /* HelperTool.h */,
+				1E5B4D4E25FBFD4000092422 /* HelperTool.m */,
+				1E5B4D4D25FBFD4000092422 /* HelperTool-Bridging-Header.h */,
+			);
+			path = HelperTool;
+			sourceTree = "<group>";
+		};
+		1E5B4D5E25FBFDEF00092422 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1E5B4D1C25FBFB7C00092422 /* Common.h */,
+				1E5B4D1B25FBFB7C00092422 /* Common.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		1EE4E20124F97E240097C32C = {
 			isa = PBXGroup;
 			children = (
 				1EE4E20C24F97E240097C32C /* whilom */,
+				1E5B4D5E25FBFDEF00092422 /* Common */,
+				1E5B4D4425FBFD2600092422 /* HelperTool */,
 				1EE4E20B24F97E240097C32C /* Products */,
+				1E5B4D0F25FBFA4800092422 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -47,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				1EE4E20A24F97E240097C32C /* whilom.app */,
+				1E5B4D4325FBFD2600092422 /* HelperTool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,12 +158,13 @@
 		1EE4E20C24F97E240097C32C /* whilom */ = {
 			isa = PBXGroup;
 			children = (
-				1E396DB025FB138C008E2122 /* whilomDebug.entitlements */,
-				1E2FA93525FB12FE00D7D123 /* whilom.entitlements */,
 				1EE4E20D24F97E240097C32C /* AppDelegate.swift */,
 				1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */,
+				1E5B4D1A25FBFB4100092422 /* authorization */,
+				1E396DB025FB138C008E2122 /* whilomDebug.entitlements */,
+				1E2FA93525FB12FE00D7D123 /* whilom.entitlements */,
+				1E5B4D0725FB779900092422 /* Main.storyboard */,
 				1EE4E21124F97E250097C32C /* Assets.xcassets */,
-				1EE4E21324F97E250097C32C /* Main.storyboard */,
 				1EE4E21624F97E250097C32C /* Info.plist */,
 			);
 			path = whilom;
@@ -68,6 +173,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1E5B4D4225FBFD2600092422 /* HelperTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E5B4D4725FBFD2600092422 /* Build configuration list for PBXNativeTarget "HelperTool" */;
+			buildPhases = (
+				1E5B4D3F25FBFD2600092422 /* Sources */,
+				1E5B4D4025FBFD2600092422 /* Frameworks */,
+				1E5B4D4125FBFD2600092422 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelperTool;
+			productName = HelperTool;
+			productReference = 1E5B4D4325FBFD2600092422 /* HelperTool */;
+			productType = "com.apple.product-type.tool";
+		};
 		1EE4E20924F97E240097C32C /* whilom */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EE4E21A24F97E250097C32C /* Build configuration list for PBXNativeTarget "whilom" */;
@@ -75,6 +197,7 @@
 				1EE4E20624F97E240097C32C /* Sources */,
 				1EE4E20724F97E240097C32C /* Frameworks */,
 				1EE4E20824F97E240097C32C /* Resources */,
+				1E5B4D3625FBFC4000092422 /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
@@ -91,12 +214,17 @@
 		1EE4E20224F97E240097C32C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Julian Weiss";
 				TargetAttributes = {
+					1E5B4D4225FBFD2600092422 = {
+						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
+					};
 					1EE4E20924F97E240097C32C = {
 						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -114,6 +242,7 @@
 			projectRoot = "";
 			targets = (
 				1EE4E20924F97E240097C32C /* whilom */,
+				1E5B4D4225FBFD2600092422 /* HelperTool */,
 			);
 		};
 /* End PBXProject section */
@@ -124,36 +253,85 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EE4E21224F97E250097C32C /* Assets.xcassets in Resources */,
-				1EE4E21524F97E250097C32C /* Main.storyboard in Resources */,
+				1E5B4D0825FB779900092422 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1E5B4D3F25FBFD2600092422 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E5B4D4625FBFD2600092422 /* main.swift in Sources */,
+				1E5B4D5225FBFD4000092422 /* HelperTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EE4E20624F97E240097C32C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5B4D1D25FBFB7C00092422 /* Common.m in Sources */,
 				1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */,
+				1E5B4D1725FBFB1A00092422 /* AuthorizedAppDelegate.m in Sources */,
+				1E5B4D1325FBFA5800092422 /* AuthorizedAppDelegate.swift in Sources */,
 				1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */,
+				1E5B4D0025FB74D700092422 /* Authorize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		1EE4E21324F97E250097C32C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1EE4E21424F97E250097C32C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
+		1E5B4D4825FBFD2600092422 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 24X8MVUSCN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/HelperTool/HelperTool-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 0.1.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom.HelperTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HelperTool/HelperTool-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1E5B4D4925FBFD2600092422 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 24X8MVUSCN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/HelperTool/HelperTool-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 0.1.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom.HelperTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HelperTool/HelperTool-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		1EE4E21824F97E250097C32C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -180,6 +358,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -240,6 +419,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -271,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = whilom/whilomDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -283,10 +464,12 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.9;
+				MARKETING_VERSION = 0.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "whilom/whilom-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -295,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = whilom/whilom.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -307,10 +491,11 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.9;
+				MARKETING_VERSION = 0.1.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "whilom/whilom-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -318,6 +503,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1E5B4D4725FBFD2600092422 /* Build configuration list for PBXNativeTarget "HelperTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E5B4D4825FBFD2600092422 /* Debug */,
+				1E5B4D4925FBFD2600092422 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1EE4E20524F97E240097C32C /* Build configuration list for PBXProject "whilom" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

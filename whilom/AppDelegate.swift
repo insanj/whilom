@@ -9,7 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: AuthorizedAppDelegate {
     // MARK: - properties
     // MARK: left click menu item
     let whilomStatusItem: NSStatusItem = {
@@ -91,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var imageHattieOn3: NSImage?
   
     // MARK: - runtime
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    override func applicationDidFinishLaunching(_ aNotification: Notification) {
           whilomStatusItem.button?.action = #selector(whilomClicked(_:))
           whilomStatusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
       
@@ -101,7 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
           setupRightClickMenu()
     }
 
-    func applicationWillTerminate(_ aNotification: Notification) {
+    override func applicationWillTerminate(_ aNotification: Notification) {
           // bye bye!
     }
     
@@ -171,14 +171,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: execute scripts based on state
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
-            var error: NSDictionary?
-            disableSleepScript?.executeAndReturnError(&error)
-
-            if let error = error {
-                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-                alert.runModal()
-                return false
-            }
+//            var error: NSDictionary?
+//            disableSleepScript?.executeAndReturnError(&error)
+//
+//            if let error = error {
+//                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+//                alert.runModal()
+//                return false
+//            }
+          
+//          let command = "sudo pmset -a disablesleep 1"
+//          Authorize.runCommand(asRoot: command)
         }
       
         performSleepAnimation(forwards: true)
@@ -188,14 +191,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
-            var error: NSDictionary?
-            enableSleepScript?.executeAndReturnError(&error)
-
-            if let error = error {
-                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-                alert.runModal()
-                return false
-            }
+//            var error: NSDictionary?
+//            enableSleepScript?.executeAndReturnError(&error)
+//
+//            if let error = error {
+//                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+//                alert.runModal()
+//                return false
+//            }UTF
+          
+//            let command = "sudo pmset -a disablesleep 0"
+//            Authorize.runCommand(asRoot: command)
         }
 
         performSleepAnimation(forwards: false)

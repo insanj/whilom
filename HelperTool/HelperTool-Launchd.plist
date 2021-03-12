@@ -2,9 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.apple.security.app-sandbox</key>
-	<false/>
-	<key>com.apple.security.automation.apple-events</key>
-	<true/>
+	<key>Label</key>
+	<string>com.insanj.whilom.HelperTool</string>
+	<key>MachServices</key>
+	<dict>
+		<key>com.insanj.whilom.HelperTool</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
