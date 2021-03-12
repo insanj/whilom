@@ -5,7 +5,7 @@
 //  Created by Julian Weiss on 3/12/21.
 //  Copyright © 2021 Julian Weiss. All rights reserved.
 //
-// https://stackoverflow.com/questions/2137744/draw-standard-nsimage-inverted-white-instead-of-black
+//  https://stackoverflow.com/questions/2137744/draw-standard-nsimage-inverted-white-instead-of-black
 //
 
 import os
@@ -13,7 +13,6 @@ import AppKit
 import Foundation
 
 public extension NSImage {
-
     func inverted() -> NSImage {
         guard let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
             os_log(.error, "Could not create CGImage from NSImage")

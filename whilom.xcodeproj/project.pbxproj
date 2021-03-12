@@ -41,11 +41,7 @@
 		1E2FA93525FB12FE00D7D123 /* whilom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilom.entitlements; sourceTree = "<group>"; };
 		1E396DB025FB138C008E2122 /* whilomDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilomDebug.entitlements; sourceTree = "<group>"; };
 		1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
-		1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "whilom-Bridging-Header.h"; sourceTree = "<group>"; };
 		1E5B4D0725FB779900092422 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
-		1E5B4D3925FBFC5A00092422 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1E5B4D3B25FBFC5E00092422 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		1E5B4D6925FBFE4B00092422 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1E5B4DD525FC0DBF00092422 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1EE4E20A24F97E240097C32C /* whilom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whilom.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,9 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				1E5B4D6925FBFE4B00092422 /* Cocoa.framework */,
-				1E5B4D3B25FBFC5E00092422 /* Security.framework */,
-				1E5B4D3925FBFC5A00092422 /* Foundation.framework */,
-				1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -100,7 +93,6 @@
 				1EE4E20D24F97E240097C32C /* AppDelegate.swift */,
 				1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */,
 				1E5B4DD525FC0DBF00092422 /* String+Extension.swift */,
-				1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */,
 				1E396DB025FB138C008E2122 /* whilomDebug.entitlements */,
 				1E2FA93525FB12FE00D7D123 /* whilom.entitlements */,
 				1E5B4D0725FB779900092422 /* Main.storyboard */,
@@ -328,8 +320,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "whilom/whilom-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -355,7 +349,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "whilom/whilom-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
