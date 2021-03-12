@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E396DC225FB4A11008E2122 /* InterfaceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E396DC125FB4A11008E2122 /* InterfaceStyle.swift */; };
+		1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */; };
 		1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4E20D24F97E240097C32C /* AppDelegate.swift */; };
 		1EE4E21224F97E250097C32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4E21124F97E250097C32C /* Assets.xcassets */; };
 		1EE4E21524F97E250097C32C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4E21324F97E250097C32C /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* Begin PBXFileReference section */
 		1E2FA93525FB12FE00D7D123 /* whilom.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilom.entitlements; sourceTree = "<group>"; };
 		1E396DB025FB138C008E2122 /* whilomDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilomDebug.entitlements; sourceTree = "<group>"; };
+		1E396DC125FB4A11008E2122 /* InterfaceStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceStyle.swift; sourceTree = "<group>"; };
+		1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
 		1EE4E20A24F97E240097C32C /* whilom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whilom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4E20D24F97E240097C32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EE4E21124F97E250097C32C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 				1E396DB025FB138C008E2122 /* whilomDebug.entitlements */,
 				1E2FA93525FB12FE00D7D123 /* whilom.entitlements */,
 				1EE4E20D24F97E240097C32C /* AppDelegate.swift */,
+				1E396DC125FB4A11008E2122 /* InterfaceStyle.swift */,
+				1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */,
 				1EE4E21124F97E250097C32C /* Assets.xcassets */,
 				1EE4E21324F97E250097C32C /* Main.storyboard */,
 				1EE4E21624F97E250097C32C /* Info.plist */,
@@ -133,6 +139,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */,
+				1E396DC225FB4A11008E2122 /* InterfaceStyle.swift in Sources */,
+				1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
