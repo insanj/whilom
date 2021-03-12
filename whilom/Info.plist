@@ -26,8 +26,8 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
 	<true/>
-	<key>NSSystemAdministrationUsageDescription</key>
-	<string>Enable or disable your Mac from sleeping.</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Turning on or off the ability for your Mac to go to Sleep.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2021 Snowcode, LLC. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
@@ -36,9 +36,9 @@
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>Turning on or off the ability for your Mac to go to Sleep.</string>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+	<key>NSSystemAdministrationUsageDescription</key>
+	<string>Enable or disable your Mac from sleeping.</string>
 </dict>
 </plist>

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  keysmith
+//  whilom
 //
 //  Created by Julian Weiss on 8/28/20.
 //  Copyright © 2020 Julian Weiss. All rights reserved.
@@ -10,39 +10,82 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    var keysmithStatusItem: NSStatusItem?
-    var menu: NSMenu?
-    var hasEnabled: Bool = false
+    // MARK: - properties
+    // MARK: menu, list items
+    let menu: NSMenu = {
+      return NSMenu()
+    }()
+    
+    let whilomStatusItem: NSStatusItem = {
+      var statusItem = NSStatusItem()
+      statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+      statusItem.button?.title = "🪄"
+      return statusItem
+    }()
+  
+    let titleMenuItem: NSMenuItem = {
+      let versionString = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
+      return NSMenuItem(title: "🪄 whilom \(versionString)", action: nil, keyEquivalent: "")
+    }()
+  
+    let openMenuItem: NSMenuItem = {
+      let item = NSMenuItem()
+      item.title = "🎩 Turn Sleep Off"
+      return item
+    }()
+  
+    let quitMenuItem: NSMenuItem = {
+      let quitMenuItem = NSMenuItem()
+      quitMenuItem.title = "Quit"
+      return quitMenuItem
+    }()
+  
+    // MARK: scripts
+    let enableSleepScript: NSAppleScript? = {
+        let myAppleScript = """
+        do shell script "sudo pmset -a disablesleep 1" with administrator privileges
+        """
         
-    let openMenuItem = NSMenuItem()
-
+        var error: NSDictionary?
+        guard let scriptObject = NSAppleScript(source: myAppleScript) else {
+            return nil
+        }
+        
+        return scriptObject
+    }()
+  
+    let disableSleepScript: NSAppleScript? = {
+        let myAppleScript = """
+        do shell script "sudo pmset -a disablesleep 1" with administrator privileges
+        """
+        
+        var error: NSDictionary?
+        guard let scriptObject = NSAppleScript(source: myAppleScript) else {
+            return nil
+        }
+        
+        return scriptObject
+    }()
+  
+    // MARK: - runtime
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        keysmithStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        keysmithStatusItem?.button?.title = "🪄"
+        menu.delegate = self
+        whilomStatusItem.menu = menu
         
-        menu = NSMenu()
-        menu?.delegate = self
-        keysmithStatusItem?.menu = menu
-        
-        let titleMenuItem = NSMenuItem(title: "🪄 whilom 0.1.0", action: nil, keyEquivalent: "")
         titleMenuItem.isEnabled = false
-        menu?.addItem(titleMenuItem)
+        menu.addItem(titleMenuItem)
         
-        menu?.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem.separator())
 
-        openMenuItem.title = "🎩 Turn Sleep Off"
         openMenuItem.action = #selector(disableSleep)
         openMenuItem.target = self
-        menu?.addItem(openMenuItem)
+        menu.addItem(openMenuItem)
         
-        menu?.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem.separator())
 
-        let quitMenuItem = NSMenuItem()
-        quitMenuItem.title = "Quit"
         quitMenuItem.action = #selector(quitWhilom(_:))
         quitMenuItem.target = self
-        menu?.addItem(quitMenuItem)
+        menu.addItem(quitMenuItem)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -54,35 +97,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
   
     @objc func disableSleep() -> Bool {
-        let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 1" with administrator privileges
-        """
-        
         var error: NSDictionary?
-        guard let scriptObject = NSAppleScript(source: myAppleScript) else {
-            return false
+        disableSleepScript?.executeAndReturnError(&error)
+      
+        if let error = error {
+          let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+          alert.runModal()
+          return false
         }
-
-        let _: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
-        
+      
         openMenuItem.title = "😴 Turn Sleep On"
         openMenuItem.action = #selector(enableSleep)
         return true
     }
     
     @objc func enableSleep() -> Bool {
-        let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 0" with administrator privileges
-        """
-        
         var error: NSDictionary?
-        guard let scriptObject = NSAppleScript(source: myAppleScript) else {
-            return false
+        enableSleepScript?.executeAndReturnError(&error)
+    
+        if let error = error {
+          let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+          alert.runModal()
+          return false
         }
-
-        let _: NSAppleEventDescriptor = scriptObject.executeAndReturnError(&error)
       
-        
         openMenuItem.title = "🎩 Turn Sleep Off"
         openMenuItem.action = #selector(disableSleep)
         return true
