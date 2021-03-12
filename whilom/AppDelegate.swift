@@ -7,12 +7,14 @@
 //
 
 import Cocoa
+import LaunchAtLogin
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - properties
     // MARK: state
     private var rememberedPassword: String?
+    private var hasShownRememberPasswordAlert: Bool = false
     
     // MARK: modals that need to be referenced twice
     private var passwordRememberAlert: NSAlert?
@@ -58,6 +60,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         quitMenuItem.title = "About"
         return quitMenuItem
     }()
+    
+    let launchAtLoginItem: NSMenuItem = {
+        let startItem = NSMenuItem()
+        startItem.title = AppDelegate.launchAtLoginTitle
+        return startItem
+    }()
+    
+    private static var launchAtLoginTitle: String {
+        return "\(LaunchAtLogin.isEnabled ? "✔ " : "")Start at login"
+    }
 
     let quitMenuItem: NSMenuItem = {
         let quitMenuItem = NSMenuItem()
@@ -128,8 +140,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         enableSleepScript = buildEnableSleepScript()
         disableSleepScript = buildDisableSleepScript()
-      
-        showPasswordRememberAlert()
+        
+        if !hasShownRememberPasswordAlert { // TODO
+            hasShownRememberPasswordAlert = true
+            showPasswordRememberAlert()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -161,6 +176,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         aboutMenuItem.target = self
         menu.addItem(aboutMenuItem)
       
+        launchAtLoginItem.action = #selector(launchAtLoginWhilom(_:))
+        launchAtLoginItem.target = self
+        menu.addItem(launchAtLoginItem)
+      
         quitMenuItem.action = #selector(quitWhilom(_:))
         quitMenuItem.target = self
         menu.addItem(quitMenuItem)
@@ -188,6 +207,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         aboutAlert.runModal()
     }
   
+    @objc func launchAtLoginWhilom(_ sender: Any) {
+        LaunchAtLogin.isEnabled = !LaunchAtLogin.isEnabled
+        launchAtLoginItem.title = AppDelegate.launchAtLoginTitle
+    }
+    
     @objc func quitWhilom(_ sender: Any) -> Bool {
         NSApplication.shared.terminate(self)
         return true
