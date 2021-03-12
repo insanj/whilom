@@ -26,6 +26,8 @@
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Turning on or off the ability for your Mac to go to Sleep.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2021 Snowcode, LLC. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>
@@ -36,10 +38,12 @@
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
+	<key>NSSystemAdministrationUsageDescription</key>
+	<string>Enable or disable your Mac from sleeping.</string>
 	<key>SMPrivilegedExecutables</key>
 	<dict>
 		<key>com.insanj.whilom.HelperTool</key>
-		<string>anchor apple generic and identifier &quot;com.insanj.whilom.HelperTool&quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = 24X8MVUSCN)</string>
+		<string>anchor apple generic and identifier "com.insanj.whilom.HelperTool" and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = 24X8MVUSCN)</string>
 	</dict>
 </dict>
 </plist>

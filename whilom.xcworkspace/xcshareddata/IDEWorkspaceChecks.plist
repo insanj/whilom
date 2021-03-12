@@ -2,12 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Label</key>
-	<string>com.insanj.whilom.HelperTool</string>
-	<key>MachServices</key>
-	<dict>
-		<key>com.insanj.whilom.HelperTool</key>
-		<true/>
-	</dict>
+	<key>IDEDidComputeMac32BitWarning</key>
+	<true/>
 </dict>
 </plist>

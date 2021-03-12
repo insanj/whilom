@@ -1,0 +1,16 @@
+PODS:
+  - Scriptable (0.1.5)
+
+DEPENDENCIES:
+  - Scriptable
+
+SPEC REPOS:
+  trunk:
+    - Scriptable
+
+SPEC CHECKSUMS:
+  Scriptable: 738a460ef13a2619818c797d67a7619f196a2e84
+
+PODFILE CHECKSUM: 9d81fd8dfd4967735d237fbfd84ffbb5312226fe
+
+COCOAPODS: 1.10.1

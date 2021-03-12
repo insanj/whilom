@@ -9,8 +9,15 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: AuthorizedAppDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - properties
+    // MARK: state
+    private var rememberedPassword: String?
+    private var shouldUseRememberedPassword: Bool = false
+    
+    // MARK: modals that need to be referenced twice
+    private var passwordRememberAlert: NSAlert?
+
     // MARK: left click menu item
     let whilomStatusItem: NSStatusItem = {
         var statusItem = NSStatusItem()
@@ -36,9 +43,15 @@ class AppDelegate: AuthorizedAppDelegate {
         return NSMenu()
     }()
   
-    let titleMenuItem: NSMenuItem = {
+    private static var titleMenuItemString: String {
         let versionString = Bundle.main.infoDictionary!["CFBundleShortVersionString"]!
-        return NSMenuItem(title: "💝 whilom \(versionString)", action: nil, keyEquivalent: "")
+        let emoji = String.randomEmoji ?? "💝"
+        let string = "\(emoji) whilom \(versionString)"
+        return string
+    }
+
+    let titleMenuItem: NSMenuItem = {
+        return NSMenuItem(title: AppDelegate.titleMenuItemString, action: nil, keyEquivalent: "")
     }()
   
     let aboutMenuItem: NSMenuItem = {
@@ -91,7 +104,7 @@ class AppDelegate: AuthorizedAppDelegate {
     var imageHattieOn3: NSImage?
   
     // MARK: - runtime
-    override func applicationDidFinishLaunching(_ aNotification: Notification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
           whilomStatusItem.button?.action = #selector(whilomClicked(_:))
           whilomStatusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
       
@@ -99,14 +112,16 @@ class AppDelegate: AuthorizedAppDelegate {
           themeifyMenuItems()
       
           setupRightClickMenu()
+      
+          showPasswordRememberAlert()
     }
 
-    override func applicationWillTerminate(_ aNotification: Notification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
           // bye bye!
     }
     
     // MARK: - left or right click handler
-    @objc func whilomClicked(_ sender: NSStatusBarButton)  {
+    @objc private func whilomClicked(_ sender: NSStatusBarButton)  {
         guard let event = NSApp.currentEvent else {
             return
         }
@@ -119,7 +134,7 @@ class AppDelegate: AuthorizedAppDelegate {
     }
     
     // MARK: - right click handlers
-  private func setupRightClickMenu() {
+    private func setupRightClickMenu() {
         titleMenuItem.isEnabled = false
         menu.addItem(titleMenuItem)
         menu.delegate = self
@@ -136,9 +151,12 @@ class AppDelegate: AuthorizedAppDelegate {
     }
   
     private func createWhilomMenu() {
+        titleMenuItem.title = AppDelegate.titleMenuItemString
         whilomStatusItem.menu = menu
-        let point = NSApp.currentEvent?.window?.frame.origin ?? .zero
-        menu.popUp(positioning: titleMenuItem, at: point, in: nil)
+        let frame = NSApp.currentEvent?.window?.frame ?? .zero
+        let point = frame.origin
+        let bottomPoint = CGPoint(x: point.x, y: point.y - 6)
+        menu.popUp(positioning: titleMenuItem, at: bottomPoint, in: nil)
     }
   
     private func destroyWhilomMenu() {
@@ -148,7 +166,7 @@ class AppDelegate: AuthorizedAppDelegate {
     @objc func aboutWhilom(_ sender: Any) {
         let aboutAlert = NSAlert()
         aboutAlert.icon = NSImage(named: NSImage.Name("whilom"))
-        aboutAlert.messageText = "whilom"
+        aboutAlert.messageText = "whilom\(isJustMessingAround == true ? " just messin' around mode" : "")"
         aboutAlert.informativeText = "🪄 keep your mac awake even when the lid is closed\n\n💭 whi·lom, meaning \"at times,\" having once been\n\n🎉 thanks for checking out our app! follow us @SnowcodeDesign\n\n© 2021 Snowcode, LLC"
         aboutAlert.addButton(withTitle: "👋 Sweet dreams!")
         aboutAlert.runModal()
@@ -171,17 +189,23 @@ class AppDelegate: AuthorizedAppDelegate {
     // MARK: execute scripts based on state
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
-//            var error: NSDictionary?
-//            disableSleepScript?.executeAndReturnError(&error)
-//
-//            if let error = error {
-//                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-//                alert.runModal()
-//                return false
-//            }
-          
-//          let command = "sudo pmset -a disablesleep 1"
-//          Authorize.runCommand(asRoot: command)
+            if shouldUseRememberedPassword, let remembered = rememberedPassword {
+                let result = WhilomCommand(password: remembered, type: .disableSleep).runTask()
+                if let error = result.errorOutput {
+                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
+                    alert.runModal()
+                    return false
+                }
+            } else {
+                var error: NSDictionary?
+                disableSleepScript?.executeAndReturnError(&error)
+
+                if let error = error {
+                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+                    alert.runModal()
+                    return false
+                }
+            }
         }
       
         performSleepAnimation(forwards: true)
@@ -191,20 +215,23 @@ class AppDelegate: AuthorizedAppDelegate {
     
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
-//            var error: NSDictionary?
-//            enableSleepScript?.executeAndReturnError(&error)
-//
-//            if let error = error {
-//                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-//                alert.runModal()
-//                return false
-//            }UTF
-          
-//            let command = "sudo pmset -a disablesleep 0"
-//            Authorize.runCommand(asRoot: command)
-          
-            
-          
+            if shouldUseRememberedPassword, let remembered = rememberedPassword {
+                let result = WhilomCommand(password: remembered, type: .enableSleep).runTask()
+                if let error = result.errorOutput {
+                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error]))
+                    alert.runModal()
+                    return false
+                }
+            } else {
+                var error: NSDictionary?
+                enableSleepScript?.executeAndReturnError(&error)
+
+                if let error = error {
+                    let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+                    alert.runModal()
+                    return false
+                }
+            }
         }
 
         performSleepAnimation(forwards: false)
@@ -273,8 +300,69 @@ class AppDelegate: AuthorizedAppDelegate {
         imageHattieOn2 = baseHattieOne2Image
         imageHattieOn3 = baseHattieOne3Image
     }
+    
+  // MARK: - perhaps temporary auth
+    private func showPasswordRememberAlert() {
+        let alert = NSAlert()
+        passwordRememberAlert = alert
+        
+        alert.icon = NSImage(named: NSImage.Name("whilom"))
+        alert.messageText = "Do you want us to remember your password for this session?"
+        alert.informativeText = "Otherwise, we'll ask every now and then when you use whilom."
+        
+        let passwordTextField = NSSecureTextField(string: "")
+        passwordTextField.placeholderString = "Your Local Computer Password"
+        passwordTextField.frame = CGRect(x: 0, y: 0, width: 240, height: 32)
+        passwordTextField.maximumNumberOfLines = 1
+//        passwordTextField.target = self
+//        passwordTextField.action = #selector(rememberPasswordTextFieldChanged(_:))
+        passwordTextField.delegate = self
+        
+        alert.accessoryView = passwordTextField
+        alert.showsHelp = true
+        alert.addButton(withTitle: "🔐 Remember")
+        alert.buttons.first?.target = self
+        alert.buttons.first?.action = #selector(rememberPasswordConfirmClicked(_:))
+
+        alert.addButton(withTitle: "🤫 Ask Me Later")
+        
+        
+        alert.delegate = self
+        alert.runModal()
+    }
+    
+    @objc func rememberPasswordConfirmClicked(_ sender: NSButton) {
+        shouldUseRememberedPassword = true
+        passwordRememberAlert?.buttons.last?.performClick(sender)
+    }
+    
+//    @objc func rememberPasswordTextFieldChanged(_ sender: NSTextField) {
+//        rememberedPassword = sender.stringValue
+//    }
 }
 
+extension AppDelegate: NSTextFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        guard let editorValue = obj.userInfo?["NSFieldEditor"] as? NSTextView else {
+            return
+        }
+        
+        rememberedPassword = editorValue.string
+    }
+}
+
+extension AppDelegate: NSAlertDelegate {
+    func alertShowHelp(_ alert: NSAlert) -> Bool {
+        
+        let help = NSAlert()
+        help.icon = NSImage(named: NSImage.Name("whilom"))
+        help.messageText = "What is this?"
+        help.informativeText = "whilom keeps your computer safe. stopping you mac from sleeping is a root-level command. instead of saving your secure information, we ask every time we launch to make sure you're always in control.\n\nwant this experience to be improved? we're always open to suggestions, reach out @SnowcodeDesign ❤️"
+        help.runModal()
+        
+        return true
+    }
+}
 
 extension AppDelegate: NSMenuDelegate, NSMenuItemValidation {
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
