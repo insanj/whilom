@@ -108,7 +108,7 @@
         [Common setupAuthorizationRights:self->_authRef];
     }
     
-    [self.window makeKeyAndOrderFront:self];
+//    [self.window makeKeyAndOrderFront:self];
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
@@ -207,7 +207,7 @@
     
     success = SMJobBless(
         kSMDomainSystemLaunchd,
-        CFSTR("com.example.apple-samplecode.EBAS.HelperTool"),
+        CFSTR("com.insanj.whilom.HelperTool"),
         self->_authRef,
         &error
     );

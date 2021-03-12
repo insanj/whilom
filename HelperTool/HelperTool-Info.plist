@@ -12,7 +12,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>SMAuthorizedClients</key>
 	<array>
-		<string>anchor apple generic and identifier &quot;com.insanj.whilom&quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = SKMME9E2Y8)</string>
+		<string>anchor apple generic and identifier &quot;com.insanj.whilom.XPCService&quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = 24X8MVUSCN)</string>
+		<string>anchor apple generic and identifier &quot;com.insanj.whilom&quot; and (certificate leaf[field.1.2.840.113635.100.6.1.9] /* exists */ or certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = 24X8MVUSCN)</string>
 	</array>
 </dict>
 </plist>

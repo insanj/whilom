@@ -202,6 +202,9 @@ class AppDelegate: AuthorizedAppDelegate {
           
 //            let command = "sudo pmset -a disablesleep 0"
 //            Authorize.runCommand(asRoot: command)
+          
+            
+          
         }
 
         performSleepAnimation(forwards: false)

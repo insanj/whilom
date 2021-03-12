@@ -8,17 +8,52 @@
 
 /* Begin PBXBuildFile section */
 		1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */; };
-		1E5B4D0025FB74D700092422 /* Authorize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4CFF25FB74D700092422 /* Authorize.m */; };
 		1E5B4D0825FB779900092422 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5B4D0725FB779900092422 /* Main.storyboard */; };
 		1E5B4D1125FBFA4800092422 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */; };
-		1E5B4D1325FBFA5800092422 /* AuthorizedAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1225FBFA5800092422 /* AuthorizedAppDelegate.swift */; };
 		1E5B4D1725FBFB1A00092422 /* AuthorizedAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1625FBFB1A00092422 /* AuthorizedAppDelegate.m */; };
 		1E5B4D1D25FBFB7C00092422 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1B25FBFB7C00092422 /* Common.m */; };
 		1E5B4D4625FBFD2600092422 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D4525FBFD2600092422 /* main.swift */; };
 		1E5B4D5225FBFD4000092422 /* HelperTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D4E25FBFD4000092422 /* HelperTool.m */; };
+		1E5B4D6A25FBFE4B00092422 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D6925FBFE4B00092422 /* Cocoa.framework */; };
+		1E5B4D6B25FBFE4F00092422 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D3B25FBFC5E00092422 /* Security.framework */; };
+		1E5B4D6F25FBFE9F00092422 /* HelperTool in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1E5B4D4325FBFD2600092422 /* HelperTool */; };
+		1E5B4D7A25FBFF3800092422 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1B25FBFB7C00092422 /* Common.m */; };
+		1E5B4D8625FBFFF700092422 /* XPCService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D8525FBFFF700092422 /* XPCService.m */; };
+		1E5B4D8825FBFFF700092422 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D8725FBFFF700092422 /* main.m */; };
+		1E5B4D8C25FBFFF700092422 /* XPCService.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 1E5B4D8125FBFFF700092422 /* XPCService.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E5B4D9325FC000A00092422 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D3925FBFC5A00092422 /* Foundation.framework */; };
+		1E5B4D9425FC000D00092422 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D3B25FBFC5E00092422 /* Security.framework */; };
+		1E5B4DA325FC020700092422 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4D1B25FBFB7C00092422 /* Common.m */; };
+		1E5B4DAB25FC022A00092422 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */; };
+		1E5B4DAC25FC023800092422 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D3925FBFC5A00092422 /* Foundation.framework */; };
+		1E5B4DAD25FC023B00092422 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D3B25FBFC5E00092422 /* Security.framework */; };
 		1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4E20D24F97E240097C32C /* AppDelegate.swift */; };
 		1EE4E21224F97E250097C32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4E21124F97E250097C32C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1E5B4D6C25FBFE7E00092422 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EE4E20224F97E240097C32C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E5B4D4225FBFD2600092422;
+			remoteInfo = HelperTool;
+		};
+		1E5B4D8A25FBFFF700092422 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EE4E20224F97E240097C32C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E5B4D8025FBFFF700092422;
+			remoteInfo = XPCService;
+		};
+		1E5B4DB125FC025400092422 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EE4E20224F97E240097C32C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E5B4D4225FBFD2600092422;
+			remoteInfo = HelperTool;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		1E5B4D3625FBFC4000092422 /* Embed XPC Services */ = {
@@ -27,18 +62,20 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
 			dstSubfolderSpec = 16;
 			files = (
+				1E5B4D8C25FBFFF700092422 /* XPCService.xpc in Embed XPC Services */,
 			);
 			name = "Embed XPC Services";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E5B4D4125FBFD2600092422 /* CopyFiles */ = {
+		1E5B4D6E25FBFE9100092422 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
 			files = (
+				1E5B4D6F25FBFE9F00092422 /* HelperTool in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -47,11 +84,8 @@
 		1E396DB025FB138C008E2122 /* whilomDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whilomDebug.entitlements; sourceTree = "<group>"; };
 		1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
 		1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "whilom-Bridging-Header.h"; sourceTree = "<group>"; };
-		1E5B4CFF25FB74D700092422 /* Authorize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Authorize.m; sourceTree = "<group>"; };
-		1E5B4D0525FB750800092422 /* Authorize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Authorize.h; sourceTree = "<group>"; };
 		1E5B4D0725FB779900092422 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
-		1E5B4D1225FBFA5800092422 /* AuthorizedAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedAppDelegate.swift; sourceTree = "<group>"; };
 		1E5B4D1625FBFB1A00092422 /* AuthorizedAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthorizedAppDelegate.m; sourceTree = "<group>"; };
 		1E5B4D1925FBFB3300092422 /* AuthorizedAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthorizedAppDelegate.h; sourceTree = "<group>"; };
 		1E5B4D1B25FBFB7C00092422 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
@@ -65,6 +99,13 @@
 		1E5B4D4E25FBFD4000092422 /* HelperTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperTool.m; sourceTree = "<group>"; };
 		1E5B4D5025FBFD4000092422 /* HelperTool-Launchd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HelperTool-Launchd.plist"; sourceTree = "<group>"; };
 		1E5B4D5125FBFD4000092422 /* HelperTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperTool.h; sourceTree = "<group>"; };
+		1E5B4D6925FBFE4B00092422 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1E5B4D8125FBFFF700092422 /* XPCService.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XPCService.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E5B4D8325FBFFF700092422 /* XPCServiceProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCServiceProtocol.h; sourceTree = "<group>"; };
+		1E5B4D8425FBFFF700092422 /* XPCService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCService.h; sourceTree = "<group>"; };
+		1E5B4D8525FBFFF700092422 /* XPCService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPCService.m; sourceTree = "<group>"; };
+		1E5B4D8725FBFFF700092422 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1E5B4D8925FBFFF700092422 /* XPCService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XPCService-Info.plist"; sourceTree = "<group>"; };
 		1EE4E20A24F97E240097C32C /* whilom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whilom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4E20D24F97E240097C32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EE4E21124F97E250097C32C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +117,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5B4DAD25FC023B00092422 /* Security.framework in Frameworks */,
+				1E5B4DAC25FC023800092422 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E5B4D7E25FBFFF700092422 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E5B4DAB25FC022A00092422 /* ServiceManagement.framework in Frameworks */,
+				1E5B4D9425FC000D00092422 /* Security.framework in Frameworks */,
+				1E5B4D9325FC000A00092422 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +136,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E5B4D6A25FBFE4B00092422 /* Cocoa.framework in Frameworks */,
+				1E5B4D6B25FBFE4F00092422 /* Security.framework in Frameworks */,
 				1E5B4D1125FBFA4800092422 /* ServiceManagement.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,24 +148,12 @@
 		1E5B4D0F25FBFA4800092422 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E5B4D6925FBFE4B00092422 /* Cocoa.framework */,
 				1E5B4D3B25FBFC5E00092422 /* Security.framework */,
 				1E5B4D3925FBFC5A00092422 /* Foundation.framework */,
 				1E5B4D1025FBFA4800092422 /* ServiceManagement.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		1E5B4D1A25FBFB4100092422 /* authorization */ = {
-			isa = PBXGroup;
-			children = (
-				1E5B4D1225FBFA5800092422 /* AuthorizedAppDelegate.swift */,
-				1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */,
-				1E5B4D1925FBFB3300092422 /* AuthorizedAppDelegate.h */,
-				1E5B4D1625FBFB1A00092422 /* AuthorizedAppDelegate.m */,
-				1E5B4D0525FB750800092422 /* Authorize.h */,
-				1E5B4CFF25FB74D700092422 /* Authorize.m */,
-			);
-			path = authorization;
 			sourceTree = "<group>";
 		};
 		1E5B4D4425FBFD2600092422 /* HelperTool */ = {
@@ -135,12 +178,25 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		1E5B4D8225FBFFF700092422 /* XPCService */ = {
+			isa = PBXGroup;
+			children = (
+				1E5B4D8925FBFFF700092422 /* XPCService-Info.plist */,
+				1E5B4D8325FBFFF700092422 /* XPCServiceProtocol.h */,
+				1E5B4D8425FBFFF700092422 /* XPCService.h */,
+				1E5B4D8525FBFFF700092422 /* XPCService.m */,
+				1E5B4D8725FBFFF700092422 /* main.m */,
+			);
+			path = XPCService;
+			sourceTree = "<group>";
+		};
 		1EE4E20124F97E240097C32C = {
 			isa = PBXGroup;
 			children = (
 				1EE4E20C24F97E240097C32C /* whilom */,
 				1E5B4D5E25FBFDEF00092422 /* Common */,
 				1E5B4D4425FBFD2600092422 /* HelperTool */,
+				1E5B4D8225FBFFF700092422 /* XPCService */,
 				1EE4E20B24F97E240097C32C /* Products */,
 				1E5B4D0F25FBFA4800092422 /* Frameworks */,
 			);
@@ -151,6 +207,7 @@
 			children = (
 				1EE4E20A24F97E240097C32C /* whilom.app */,
 				1E5B4D4325FBFD2600092422 /* HelperTool */,
+				1E5B4D8125FBFFF700092422 /* XPCService.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,7 +217,9 @@
 			children = (
 				1EE4E20D24F97E240097C32C /* AppDelegate.swift */,
 				1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */,
-				1E5B4D1A25FBFB4100092422 /* authorization */,
+				1E5B4D1925FBFB3300092422 /* AuthorizedAppDelegate.h */,
+				1E5B4D1625FBFB1A00092422 /* AuthorizedAppDelegate.m */,
+				1E5B4CFE25FB74D700092422 /* whilom-Bridging-Header.h */,
 				1E396DB025FB138C008E2122 /* whilomDebug.entitlements */,
 				1E2FA93525FB12FE00D7D123 /* whilom.entitlements */,
 				1E5B4D0725FB779900092422 /* Main.storyboard */,
@@ -179,7 +238,6 @@
 			buildPhases = (
 				1E5B4D3F25FBFD2600092422 /* Sources */,
 				1E5B4D4025FBFD2600092422 /* Frameworks */,
-				1E5B4D4125FBFD2600092422 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -190,6 +248,24 @@
 			productReference = 1E5B4D4325FBFD2600092422 /* HelperTool */;
 			productType = "com.apple.product-type.tool";
 		};
+		1E5B4D8025FBFFF700092422 /* XPCService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E5B4D8D25FBFFF700092422 /* Build configuration list for PBXNativeTarget "XPCService" */;
+			buildPhases = (
+				1E5B4D7D25FBFFF700092422 /* Sources */,
+				1E5B4D7E25FBFFF700092422 /* Frameworks */,
+				1E5B4D7F25FBFFF700092422 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E5B4DB225FC025400092422 /* PBXTargetDependency */,
+			);
+			name = XPCService;
+			productName = XPCService;
+			productReference = 1E5B4D8125FBFFF700092422 /* XPCService.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 		1EE4E20924F97E240097C32C /* whilom */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EE4E21A24F97E250097C32C /* Build configuration list for PBXNativeTarget "whilom" */;
@@ -198,10 +274,13 @@
 				1EE4E20724F97E240097C32C /* Frameworks */,
 				1EE4E20824F97E240097C32C /* Resources */,
 				1E5B4D3625FBFC4000092422 /* Embed XPC Services */,
+				1E5B4D6E25FBFE9100092422 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1E5B4D6D25FBFE7E00092422 /* PBXTargetDependency */,
+				1E5B4D8B25FBFFF700092422 /* PBXTargetDependency */,
 			);
 			name = whilom;
 			productName = keysmith;
@@ -221,6 +300,9 @@
 					1E5B4D4225FBFD2600092422 = {
 						CreatedOnToolsVersion = 12.4;
 						LastSwiftMigration = 1240;
+					};
+					1E5B4D8025FBFFF700092422 = {
+						CreatedOnToolsVersion = 12.4;
 					};
 					1EE4E20924F97E240097C32C = {
 						CreatedOnToolsVersion = 11.6;
@@ -243,11 +325,19 @@
 			targets = (
 				1EE4E20924F97E240097C32C /* whilom */,
 				1E5B4D4225FBFD2600092422 /* HelperTool */,
+				1E5B4D8025FBFFF700092422 /* XPCService */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1E5B4D7F25FBFFF700092422 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EE4E20824F97E240097C32C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -266,6 +356,17 @@
 			files = (
 				1E5B4D4625FBFD2600092422 /* main.swift in Sources */,
 				1E5B4D5225FBFD4000092422 /* HelperTool.m in Sources */,
+				1E5B4D7A25FBFF3800092422 /* Common.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E5B4D7D25FBFFF700092422 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E5B4D8825FBFFF700092422 /* main.m in Sources */,
+				1E5B4D8625FBFFF700092422 /* XPCService.m in Sources */,
+				1E5B4DA325FC020700092422 /* Common.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,13 +377,29 @@
 				1E5B4D1D25FBFB7C00092422 /* Common.m in Sources */,
 				1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */,
 				1E5B4D1725FBFB1A00092422 /* AuthorizedAppDelegate.m in Sources */,
-				1E5B4D1325FBFA5800092422 /* AuthorizedAppDelegate.swift in Sources */,
 				1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */,
-				1E5B4D0025FB74D700092422 /* Authorize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1E5B4D6D25FBFE7E00092422 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E5B4D4225FBFD2600092422 /* HelperTool */;
+			targetProxy = 1E5B4D6C25FBFE7E00092422 /* PBXContainerItemProxy */;
+		};
+		1E5B4D8B25FBFFF700092422 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E5B4D8025FBFFF700092422 /* XPCService */;
+			targetProxy = 1E5B4D8A25FBFFF700092422 /* PBXContainerItemProxy */;
+		};
+		1E5B4DB225FC025400092422 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E5B4D4225FBFD2600092422 /* HelperTool */;
+			targetProxy = 1E5B4DB125FC025400092422 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1E5B4D4825FBFD2600092422 /* Debug */ = {
@@ -329,6 +446,40 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "HelperTool/HelperTool-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1E5B4D8E25FBFFF700092422 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 24X8MVUSCN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "XPCService/XPCService-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 0.1.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom.XPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		1E5B4D8F25FBFFF700092422 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 24X8MVUSCN;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = "XPCService/XPCService-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 11.1;
+				MARKETING_VERSION = 0.1.10;
+				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom.XPCService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -508,6 +659,15 @@
 			buildConfigurations = (
 				1E5B4D4825FBFD2600092422 /* Debug */,
 				1E5B4D4925FBFD2600092422 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E5B4D8D25FBFFF700092422 /* Build configuration list for PBXNativeTarget "XPCService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E5B4D8E25FBFFF700092422 /* Debug */,
+				1E5B4D8F25FBFFF700092422 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

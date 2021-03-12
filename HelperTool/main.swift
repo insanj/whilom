@@ -9,4 +9,4 @@
 import Foundation
 
 let m = HelperTool()
-m.run()
+m?.run()

@@ -87,26 +87,26 @@ static NSString * kCommandKeyAuthRightDesc    = @"authRightDescription";
     dispatch_once(&sOnceToken, ^{
         sCommandInfo = @{
             NSStringFromSelector(@selector(readLicenseKeyAuthorization:withReply:)) : @{
-                kCommandKeyAuthRightName    : @"com.example.apple-samplecode.EBAS.readLicenseKey", 
+                kCommandKeyAuthRightName    : @"com.insanj.whilom.readLicenseKey",
                 kCommandKeyAuthRightDefault : @kAuthorizationRuleClassAllow, 
                 kCommandKeyAuthRightDesc    : NSLocalizedString(
-                    @"EBAS is trying to read its license key.", 
+                    @"Whilom is trying to read its license key.",
                     @"prompt shown when user is required to authorize to read the license key"
                 )
             },
             NSStringFromSelector(@selector(writeLicenseKey:authorization:withReply:)) : @{
-                kCommandKeyAuthRightName    : @"com.example.apple-samplecode.EBAS.writeLicenseKey", 
+                kCommandKeyAuthRightName    : @"com.insanj.whilom.writeLicenseKey",
                 kCommandKeyAuthRightDefault : @kAuthorizationRuleAuthenticateAsAdmin, 
                 kCommandKeyAuthRightDesc    : NSLocalizedString(
-                    @"EBAS is trying to write its license key.", 
+                    @"Whilom is trying to write its license key.",
                     @"prompt shown when user is required to authorize to write the license key"
                 )
             },
             NSStringFromSelector(@selector(bindToLowNumberPortAuthorization:withReply:)) : @{
-                kCommandKeyAuthRightName    : @"com.example.apple-samplecode.EBAS.startWebService", 
+                kCommandKeyAuthRightName    : @"com.insanj.whilom.startWebService",
                 kCommandKeyAuthRightDefault : @kAuthorizationRuleClassAllow, 
                 kCommandKeyAuthRightDesc    : NSLocalizedString(
-                    @"EBAS is trying to start its web service.", 
+                    @"Whilom is trying to start its web service.",
                     @"prompt shown when user is required to authorize to start the web service"
                 )
             }
