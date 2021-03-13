@@ -8,15 +8,14 @@
 
 import Cocoa
 import LaunchAtLogin
-import Security
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - properties
     // MARK: state
     private var rememberedPassword: String?
-    private let helper = HelperAuthorization()
-
+    private var hasShownRememberPasswordAlert: Bool = false
+    
     // MARK: modals that need to be referenced twice
     private var passwordRememberAlert: NSAlert?
 
@@ -92,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 0"\(shouldAppend ? appendString : "") with administrator privileges
+        do shell script "sudo pmset -a disablesleep 0 && caffeinate"\(shouldAppend ? appendString : "") with administrator privileges
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -112,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 1"\(shouldAppend ? appendString : "") with administrator privileges
+        do shell script "sudo pmset -a disablesleep 1 && caffeinate"\(shouldAppend ? appendString : "") with administrator privileges
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -142,9 +141,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         enableSleepScript = buildEnableSleepScript()
         disableSleepScript = buildDisableSleepScript()
         
-        let authData1 = helper.authorizeHelper()
-        let authRef1 = helper.checkAuthorization(authData: authData1, command: "pmset")
-//            showPasswordRememberAlert()
+        if !hasShownRememberPasswordAlert { // TODO
+            hasShownRememberPasswordAlert = true
+            showPasswordRememberAlert()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -229,39 +229,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: execute scripts based on state
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
-           //            STPrivilegedTask.launchedPrivilegedTask(withLaunchPath: "/", arguments: ["sudo pmset -a disablesleep 1"], currentDirectory: "/", authorization: authRef)
+            var error: NSDictionary?
+            disableSleepScript?.executeAndReturnError(&error)
 
-//            let rightname = "sys.openfile.readonly./tmp/cantread.txt"
-//
-//            var status: OSStatus
-//
-//            var authref: AuthorizationRef?
-//            let flags = AuthorizationFlags([.interactionAllowed, .extendRights, .preAuthorize])
-//            status = AuthorizationCreate(nil, nil, flags, &authref)
-//
-//            var item = AuthorizationItem(name: kAuthorizationEnvironmentPassword, valueLength: 0, value: nil, flags: 0)
-//            var rights = AuthorizationRights(count: 1, items: &item)
-//            status = AuthorizationCopyRights(authref!, &rights, nil, flags, nil)
-//
-//            var token = AuthorizationExternalForm()
-//            status = AuthorizationMakeExternalForm(authref!, &token)
-//
-//            let data = NSData(bytes: &token.bytes, length: kAuthorizationExternalFormLength)
-//            data.write(toFile: "./token", atomically: true)
-//            print("External form written to ./token")
-
-
-//            var error: NSDictionary?
-//            disableSleepScript?.executeAndReturnError(&error)
-//
-//            if let error = error {
-//                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-//                alert.runModal()
-//                return false
-//            }
-            
-            HelperTask.runTask(command: "pmset", arguments: ["-a", "disablesleep", "0"]) { (number) in
-                print(number)
+            if let error = error {
+                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+                alert.runModal()
+                return false
             }
         }
       
@@ -272,10 +246,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
-//            let authData = helper.authorizeHelper()
-//            let authRef = helper.checkAuthorization(authData: authData, command: "sudo pmset -a disablesleep 0")
-            
-//            STPrivilegedTask.launchedPrivilegedTask(withLaunchPath: "/bin/sh", arguments: ["sudo pmset -a disablesleep 0"])
             var error: NSDictionary?
             enableSleepScript?.executeAndReturnError(&error)
 
