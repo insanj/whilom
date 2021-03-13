@@ -229,14 +229,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: execute scripts based on state
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
-            var error: NSDictionary?
-            disableSleepScript?.executeAndReturnError(&error)
-
-            if let error = error {
-                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-                alert.runModal()
-                return false
-            }
+            
+            STPrivilegedTask.launchedPrivilegedTask(withLaunchPath: "/bin/sh", arguments: ["sudo pmset -a disablesleep 1"])
+//            var error: NSDictionary?
+//            disableSleepScript?.executeAndReturnError(&error)
+//
+//            if let error = error {
+//                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+//                alert.runModal()
+//                return false
+//            }
         }
       
         performSleepAnimation(forwards: true)
@@ -246,14 +248,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
-            var error: NSDictionary?
-            enableSleepScript?.executeAndReturnError(&error)
-
-            if let error = error {
-                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
-                alert.runModal()
-                return false
-            }
+            STPrivilegedTask.launchedPrivilegedTask(withLaunchPath: "/bin/sh", arguments: ["sudo pmset -a disablesleep 0"])
+//            var error: NSDictionary?
+//            enableSleepScript?.executeAndReturnError(&error)
+//
+//            if let error = error {
+//                let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
+//                alert.runModal()
+//                return false
+//            }
         }
 
         performSleepAnimation(forwards: false)
