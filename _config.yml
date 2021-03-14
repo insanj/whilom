@@ -1,1 +1,8 @@
+title: whilom
+description: 🪄 keep your mac awake even when the lid is closed
+show_downloads: true
+google_analytics:
+repository: "https://github.com/SnowcodeDesign/whilom"
 theme: jekyll-theme-tactile
+twitter:
+  username: SnowcodeDesign
