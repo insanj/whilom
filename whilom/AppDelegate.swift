@@ -81,8 +81,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isSleepEnabled = true
     private var isJustMessingAround = false
   
-    var enableSleepScript: NSAppleScript?
-    private func buildEnableSleepScript(_ password: String?=nil) -> NSAppleScript? {
+    var enableWhilomScript: NSAppleScript?
+    private func buildEnableWhilomScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
         var shouldAppend = false
         if let pass = password {
@@ -91,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 0 && caffeinate"\(shouldAppend ? appendString : "") with administrator privileges
+        do shell script "! screen -X -S whilom quit && screen -S whilom -d -m pmset noidle && sudo pmset -a disablesleep 0"\(shouldAppend ? appendString : "") with administrator privileges
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -101,8 +101,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return scriptObject
     }
   
-    var disableSleepScript: NSAppleScript?
-    private func buildDisableSleepScript(_ password: String?=nil) -> NSAppleScript? {
+    var disableWhilomScript: NSAppleScript?
+    private func buildDisableWhilomScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
         var shouldAppend = false
         if let pass = password {
@@ -111,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let myAppleScript = """
-        do shell script "sudo pmset -a disablesleep 1 && caffeinate"\(shouldAppend ? appendString : "") with administrator privileges
+        do shell script "! screen -X -S whilom quit && sudo pmset -a disablesleep 1"\(shouldAppend ? appendString : "") with administrator privileges
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -138,8 +138,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       
         setupRightClickMenu()
         
-        enableSleepScript = buildEnableSleepScript()
-        disableSleepScript = buildDisableSleepScript()
+        enableWhilomScript = buildEnableWhilomScript()
+        disableWhilomScript = buildDisableWhilomScript()
         
         if !hasShownRememberPasswordAlert { // TODO
             hasShownRememberPasswordAlert = true
@@ -230,7 +230,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
-            disableSleepScript?.executeAndReturnError(&error)
+            disableWhilomScript?.executeAndReturnError(&error)
 
             if let error = error {
                 let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
@@ -247,7 +247,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
-            enableSleepScript?.executeAndReturnError(&error)
+            enableWhilomScript?.executeAndReturnError(&error)
 
             if let error = error {
                 let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
@@ -353,8 +353,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func rememberPasswordConfirmClicked(_ sender: NSButton) {
         passwordRememberAlert?.buttons.last?.performClick(sender)
         
-        enableSleepScript = buildEnableSleepScript(rememberedPassword)
-        disableSleepScript = buildDisableSleepScript(rememberedPassword)
+        enableWhilomScript = buildEnableWhilomScript(rememberedPassword)
+        disableWhilomScript = buildDisableWhilomScript(rememberedPassword)
         rememberedPassword = nil
     }
 }
