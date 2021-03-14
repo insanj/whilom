@@ -2,19 +2,35 @@
 
 ## What is this?
 
+<dl>
+<dd>
 a very tiny status bar app that runs a very tiny script to keep your mac awake even when the lid is closed. no external monitor required. drag and drop into your Applications folder and click to run. right now, it asks for your password the first time it disables or enables sleep. enjoy! ✨
+</dd>
+</dl>
 
 ## What does it mean?
 
+<dl>
+<dd>
 whi•lom, meaning "at times," having once been. 💭
+</dd>
+</dl>
 
 ## How do I use this?
 
-download the `whilom.app` from either the [releases](https://github.com/SnowcodeDesign/whilom/releases) section, or the root directory of the repo. double click to open, then click on the brand new icon in your status bar to activate. it's a good idea to drag `whilom.app` into your Applications directory.
+<dl>
+<dd>
+download the <code>whilom.app</code> from either the <a href="https://github.com/SnowcodeDesign/whilom/releases">releases</a> section, or the root directory of the repo. double click to open, then click on the brand new icon in your status bar to activate. it's a good idea to drag <code>whilom.app</code> into your Applications directory.
+</dd>
+</dl>
 
 ## Why would I use this?
 
+<dl>
+<dd>
 mostly for running servers. perhaps Plex, Minecraft, or Jenkins. it's a really easy tool to understand written in 100% swift. maybe you'll find a way to make it even more useful for yourself. maybe you've been interested in status bar apps and small frame-by-frame animations. do reach out if that's the case! 💘
+</dd>
+</dl>
 
 ## Authors
 
