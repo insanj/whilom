@@ -4,7 +4,7 @@
 
 <dl>
 <dd>
-a very tiny status bar app that runs a very tiny script to keep your mac awake even when the lid is closed. no external monitor required. drag and drop into your Applications folder and click to run. right now, it asks for your password the first time it disables or enables sleep. enjoy! ✨
+an adorable status bar app that runs a very tiny script to keep your mac awake even when the lid is closed. no external monitor required. enjoy! ✨
 </dd>
 </dl>
 
@@ -29,6 +29,14 @@ download the <code>whilom.app</code> from either the <a href="https://github.com
 <dl>
 <dd>
 mostly for running servers. perhaps Plex, Minecraft, or Jenkins. it's a really easy tool to understand written in 100% swift. maybe you'll find a way to make it even more useful for yourself. maybe you've been interested in status bar apps and small frame-by-frame animations. do reach out if that's the case! 💘
+</dd>
+</dl>
+
+## Will it be updated?
+
+<dl>
+<dd>
+yes! whilom is being improved as you read this to work a little better with the apple's app sandbox system. in the 1.0 release, whilom will use a helper tool so it only needs to ask for a password when you install. 🗞
 </dd>
 </dl>
 
