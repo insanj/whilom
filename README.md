@@ -1,10 +1,17 @@
 ![whilom_hero](https://user-images.githubusercontent.com/951011/110921325-6d258400-82ec-11eb-8f41-f8e83aa72c3e.png)
 
+<p align="center">
+  <a href="https://github.com/SnowcodeDesign/whilom/releases/download/0.1.13/whilom.app.zip">
+    <img align="left" width="62" height="62" src="favicon.ico">
+    <h3 align="left">Download me now<br/>for free 💝</h3>
+  </a>
+</p>
+
 ## What is this?
 
 <dl>
 <dd>
-an adorable status bar app that runs a very tiny script to keep your mac awake even when the lid is closed. no external monitor required. enjoy! ✨
+an adorable status bar app that runs a small script to keep your mac awake even when the lid is closed. no external monitor required. enjoy! ✨
 </dd>
 </dl>
 
