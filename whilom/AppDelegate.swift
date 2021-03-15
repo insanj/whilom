@@ -81,8 +81,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isSleepEnabled = true
     private var isJustMessingAround = false
   
-    var enableWhilomScript: NSAppleScript?
-    private func buildEnableWhilomScript(_ password: String?=nil) -> NSAppleScript? {
+    var enableSleepScript: NSAppleScript?
+    private func buildEnableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
         var shouldAppend = false
         if let pass = password {
@@ -92,6 +92,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let myAppleScript = """
         do shell script "! screen -X -S whilom quit && screen -S whilom -d -m pmset noidle && sudo pmset -a disablesleep 0"\(shouldAppend ? appendString : "") with administrator privileges
+        do shell script "defaults -currentHost write com.apple.screensaver idleTime `defaults -currentHost read com.insanj.whilom idleTime`"
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -101,8 +102,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return scriptObject
     }
   
-    var disableWhilomScript: NSAppleScript?
-    private func buildDisableWhilomScript(_ password: String?=nil) -> NSAppleScript? {
+    var disableSleepScript: NSAppleScript?
+    private func buildDisableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
         var shouldAppend = false
         if let pass = password {
@@ -112,6 +113,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let myAppleScript = """
         do shell script "! screen -X -S whilom quit && sudo pmset -a disablesleep 1"\(shouldAppend ? appendString : "") with administrator privileges
+        do shell script "defaults -currentHost write com.insanj.whilom idleTime `defaults -currentHost read com.apple.screensaver idleTime`"
+        do shell script "defaults -currentHost write com.apple.screensaver idleTime 0"
         """
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
@@ -138,8 +141,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       
         setupRightClickMenu()
         
-        enableWhilomScript = buildEnableWhilomScript()
-        disableWhilomScript = buildDisableWhilomScript()
+        enableSleepScript = buildEnableSleepScript()
+        disableSleepScript = buildDisableSleepScript()
         
         if !hasShownRememberPasswordAlert { // TODO
             hasShownRememberPasswordAlert = true
@@ -230,7 +233,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
-            disableWhilomScript?.executeAndReturnError(&error)
+            disableSleepScript?.executeAndReturnError(&error)
 
             if let error = error {
                 let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
@@ -247,7 +250,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
-            enableWhilomScript?.executeAndReturnError(&error)
+            enableSleepScript?.executeAndReturnError(&error)
 
             if let error = error {
                 let alert = NSAlert(error: NSError(domain: "com.insanj.whilom", code: 0, userInfo: [NSLocalizedDescriptionKey: error["NSAppleScriptErrorMessage"]!]))
@@ -353,8 +356,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func rememberPasswordConfirmClicked(_ sender: NSButton) {
         passwordRememberAlert?.buttons.last?.performClick(sender)
         
-        enableWhilomScript = buildEnableWhilomScript(rememberedPassword)
-        disableWhilomScript = buildDisableWhilomScript(rememberedPassword)
+        enableSleepScript = buildEnableSleepScript(rememberedPassword)
+        disableSleepScript = buildDisableSleepScript(rememberedPassword)
         rememberedPassword = nil
     }
 }
