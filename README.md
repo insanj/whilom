@@ -57,6 +57,8 @@ whilom@snowcode.design
 
 ## [License](LICENSE)
 
+Please see the [license](LICENSE) file for the full credits and attribution for whilom.
+
 ```
 Copyright (c) 2021 Snowcode, LLC
 
