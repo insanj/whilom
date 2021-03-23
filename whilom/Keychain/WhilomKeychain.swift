@@ -21,23 +21,19 @@ class WhilomKeychain {
   public class func saveCurrentPassword(_ password: String) -> Bool {
     let username = getCurrentUsername()
     let key = WhilomKeychain.key(forUsername: username)
-    
-    do {
-      return try Keychain.save(str: password, forKey: key)
-    } catch let e {
-      print(e)
-      return false
-    }
+    return KeychainWrapper.standard.set(password, forKey: key)
   }
   
   public class func getSavedPassword(_ username: String?=nil) -> String? {
     let username = username ?? getCurrentUsername()
     let key = WhilomKeychain.key(forUsername: username)
-    return Keychain.load(key: key)
+    return KeychainWrapper.standard.string(forKey: key)
   }
   
-  public class func deletePasswords() -> Bool {
-    return Keychain.clear()
+  public class func deletePassword(_ username: String?=nil) -> Bool {
+    let username = username ?? getCurrentUsername()
+    let key = WhilomKeychain.key(forUsername: username)
+    return KeychainWrapper.standard.removeObject(forKey: key)
   }
   
 }

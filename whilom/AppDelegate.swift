@@ -219,6 +219,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: - left click handler
     func toggleSleep() {
+        guard let _ = WhilomKeychain.getSavedPassword() else {
+            showPasswordRememberAlert { [unowned self] in
+                toggleSleep()
+            }
+            return
+        }
+        
         if isSleepEnabled {
             let _ = disableSleep()
         } else {
@@ -330,7 +337,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // MARK: - perhaps temporary auth
-    private func showPasswordRememberAlert() {
+    private var pendingShowPasswordCompletionBlock: (() -> (Void))?
+    private func showPasswordRememberAlert(_ completion: (() -> (Void))? = nil) {
         let alert = NSAlert()
         passwordRememberAlert = alert
         
@@ -354,12 +362,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         alert.delegate = self
         alert.runModal()
+        
+        pendingShowPasswordCompletionBlock = completion
     }
     
     @objc func rememberPasswordConfirmClicked(_ sender: NSButton) {
         passwordRememberAlert?.buttons.last?.performClick(sender)
         
         guard let password = rememberedPassword else {
+            
+            let problem = NSAlert()
+            problem.icon = NSImage(named: NSImage.Name("whilom"))
+            problem.messageText = "Did You Forget to Type Something In?"
+            problem.informativeText = "Please try again, if you wanna. Have a wonderful day!"
+            problem.runModal()
+            
             return
         }
       
@@ -379,6 +396,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //        enableSleepScript = buildEnableSleepScript(rememberedPassword)
 //        disableSleepScript = buildDisableSleepScript(rememberedPassword)
         rememberedPassword = nil
+        
+        pendingShowPasswordCompletionBlock?()
     }
 }
 
