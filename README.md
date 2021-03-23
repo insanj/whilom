@@ -1,7 +1,7 @@
 ![whilom_hero](https://user-images.githubusercontent.com/951011/110921325-6d258400-82ec-11eb-8f41-f8e83aa72c3e.png)
 
 <p align="center">
-  <a href="https://github.com/SnowcodeDesign/whilom/releases/download/0.1.13/whilom.app.zip">
+  <a href="https://github.com/SnowcodeDesign/whilom/releases/download/0.2.0/whilom.app.zip">
     <img align="left" width="62" height="62" src="favicon.ico">
     <h3 align="left">Download me now<br/>for free 💝</h3>
   </a>
@@ -43,7 +43,7 @@ mostly for running servers. perhaps Plex, Minecraft, or Jenkins. it's a really e
 
 <dl>
 <dd>
-yes! whilom is being improved as you read this to work a little better with the apple's app sandbox system. in the 1.0 release, whilom will use a helper tool so it only needs to ask for a password when you install. 🗞
+yes! whilom is meant to be a living, breathing thing. suggest ideas and let's get cooking on the next big version. but let's not weigh it down too much, no? 🗞
 </dd>
 </dl>
 
