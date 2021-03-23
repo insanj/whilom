@@ -12,6 +12,7 @@
 		1E5B4D6A25FBFE4B00092422 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5B4D6925FBFE4B00092422 /* Cocoa.framework */; };
 		1E5B4DD625FC0DBF00092422 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B4DD525FC0DBF00092422 /* String+Extension.swift */; };
 		1E5B4DE525FC24CA00092422 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1E5B4DE425FC24CA00092422 /* LaunchAtLogin */; };
+		1E6FB241260A323F0074A382 /* WhilomKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FB240260A323F0074A382 /* WhilomKeychain.swift */; };
 		1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE4E20D24F97E240097C32C /* AppDelegate.swift */; };
 		1EE4E21224F97E250097C32C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4E21124F97E250097C32C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -46,7 +47,7 @@
 		1E5B4D6925FBFE4B00092422 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1E5B4DD525FC0DBF00092422 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1E6E8FD325FC8CEC00ABCFE3 /* whilom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "whilom-Bridging-Header.h"; sourceTree = "<group>"; };
-		1E6E8FE625FC973A00ABCFE3 /* SMJobBlessUtil.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = SMJobBlessUtil.py; sourceTree = "<group>"; };
+		1E6FB240260A323F0074A382 /* WhilomKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhilomKeychain.swift; sourceTree = "<group>"; };
 		1EE4E20A24F97E240097C32C /* whilom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whilom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EE4E20D24F97E240097C32C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EE4E21124F97E250097C32C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -94,7 +95,6 @@
 		1EE4E20C24F97E240097C32C /* whilom */ = {
 			isa = PBXGroup;
 			children = (
-				1E6E8FE625FC973A00ABCFE3 /* SMJobBlessUtil.py */,
 				1EE4E20D24F97E240097C32C /* AppDelegate.swift */,
 				1E396DC425FB4C26008E2122 /* NSImage+Extension.swift */,
 				1E5B4DD525FC0DBF00092422 /* String+Extension.swift */,
@@ -104,6 +104,7 @@
 				1EE4E21124F97E250097C32C /* Assets.xcassets */,
 				1EE4E21624F97E250097C32C /* Info.plist */,
 				1E6E8FD325FC8CEC00ABCFE3 /* whilom-Bridging-Header.h */,
+				1E6FB240260A323F0074A382 /* WhilomKeychain.swift */,
 			);
 			path = whilom;
 			sourceTree = "<group>";
@@ -211,6 +212,7 @@
 				1E5B4DD625FC0DBF00092422 /* String+Extension.swift in Sources */,
 				1EE4E20E24F97E240097C32C /* AppDelegate.swift in Sources */,
 				1E396DC525FB4C26008E2122 /* NSImage+Extension.swift in Sources */,
+				1E6FB241260A323F0074A382 /* WhilomKeychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +351,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.13;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -378,7 +380,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.13;
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.insanj.whilom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
