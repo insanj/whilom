@@ -81,7 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isSleepEnabled = true
     private var isJustMessingAround = false
   
-    var enableSleepScript: NSAppleScript?
+//    var enableSleepScript: NSAppleScript?
     private func buildEnableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
         var shouldAppend = false
@@ -102,7 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return scriptObject
     }
   
-    var disableSleepScript: NSAppleScript?
+//    var disableSleepScript: NSAppleScript?
     private func buildDisableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
         var shouldAppend = false
@@ -141,12 +141,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       
         setupRightClickMenu()
         
-        enableSleepScript = buildEnableSleepScript()
-        disableSleepScript = buildDisableSleepScript()
-        
-        if !hasShownRememberPasswordAlert { // TODO
-            hasShownRememberPasswordAlert = true
+        guard let _ = WhilomKeychain.getSavedPassword() else {
             showPasswordRememberAlert()
+            return
         }
     }
 
@@ -233,6 +230,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func disableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
+            
+            let password = WhilomKeychain.getSavedPassword()
+            let disableSleepScript = buildDisableSleepScript(password)
             disableSleepScript?.executeAndReturnError(&error)
 
             if let error = error {
@@ -250,6 +250,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func enableSleep() -> Bool {
         if !isJustMessingAround {
             var error: NSDictionary?
+            
+            let password = WhilomKeychain.getSavedPassword()
+            let enableSleepScript = buildEnableSleepScript(password)
             enableSleepScript?.executeAndReturnError(&error)
 
             if let error = error {
@@ -356,8 +359,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func rememberPasswordConfirmClicked(_ sender: NSButton) {
         passwordRememberAlert?.buttons.last?.performClick(sender)
         
-        enableSleepScript = buildEnableSleepScript(rememberedPassword)
-        disableSleepScript = buildDisableSleepScript(rememberedPassword)
+        guard let password = rememberedPassword else {
+            return
+        }
+      
+        let result = WhilomKeychain.saveCurrentPassword(password)
+        
+        guard result == true else {
+            
+            let problem = NSAlert()
+            problem.icon = NSImage(named: NSImage.Name("whilom"))
+            problem.messageText = "Unable to Save"
+            problem.informativeText = "Uh-oh, we had a problem trying to securely save your information. Please try again or check if you're running on the latest version of whilom. Have a great day!"
+            problem.runModal()
+            
+            return
+        }
+      
+//        enableSleepScript = buildEnableSleepScript(rememberedPassword)
+//        disableSleepScript = buildDisableSleepScript(rememberedPassword)
         rememberedPassword = nil
     }
 }
