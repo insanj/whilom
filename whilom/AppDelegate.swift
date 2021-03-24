@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   
     let aboutMenuItem: NSMenuItem = {
         let quitMenuItem = NSMenuItem()
-        quitMenuItem.title = "About"
+        quitMenuItem.title = "👋 About"
         return quitMenuItem
     }()
     
@@ -66,9 +66,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         startItem.title = AppDelegate.launchAtLoginTitle
         return startItem
     }()
+  
+    let changePasswordItem: NSMenuItem = {
+        let startItem = NSMenuItem()
+        startItem.title = "🔐 Change password"
+        return startItem
+    }()
     
     private static var launchAtLoginTitle: String {
-        return "\(LaunchAtLogin.isEnabled ? "✔ " : "")Start at login"
+        return "\(LaunchAtLogin.isEnabled ? "👍" : "👎") Start at login"
     }
 
     let quitMenuItem: NSMenuItem = {
@@ -113,7 +119,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let myAppleScript = """
         do shell script "! screen -X -S whilom quit && sudo pmset -a disablesleep 1"\(shouldAppend ? appendString : "") with administrator privileges
-        do shell script "defaults -currentHost write com.insanj.whilom idleTime `defaults -currentHost read com.apple.screensaver idleTime`"
+        
+        do shell script "
+        if defaults -currentHost read com.apple.screensaver idleTime; then
+            defaults -currentHost write com.insanj.whilom idleTime `defaults -currentHost read com.apple.screensaver idleTime`
+            echo 'Saved custom screensaver time to com.insanj.whilom idleTime default'
+        else
+            defaults -currentHost write com.insanj.whilom idleTime 1200
+            echo 'Saved default screensaver time to com.insanj.whilom idleTime default'
+        fi
+        "
+
         do shell script "defaults -currentHost write com.apple.screensaver idleTime 0"
         """
         
@@ -171,15 +187,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.delegate = self
 
         menu.addItem(NSMenuItem.separator())
-
+      
         aboutMenuItem.action = #selector(aboutWhilom(_:))
         aboutMenuItem.target = self
         menu.addItem(aboutMenuItem)
       
+        changePasswordItem.action = #selector(changePasswordWhilom(_:))
+        changePasswordItem.target = self
+        menu.addItem(changePasswordItem)
+      
         launchAtLoginItem.action = #selector(launchAtLoginWhilom(_:))
         launchAtLoginItem.target = self
         menu.addItem(launchAtLoginItem)
-      
+        
+        menu.addItem(NSMenuItem.separator())
+
         quitMenuItem.action = #selector(quitWhilom(_:))
         quitMenuItem.target = self
         menu.addItem(quitMenuItem)
@@ -202,7 +224,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let aboutAlert = NSAlert()
         aboutAlert.icon = NSImage(named: NSImage.Name("whilom"))
         aboutAlert.messageText = "whilom\(isJustMessingAround == true ? " just messin' around mode" : "")"
-        aboutAlert.informativeText = "🪄 keep your mac awake even when the lid is closed\n\n💭 whi·lom, meaning \"at times,\" having once been\n\n🎉 thanks for checking out our app! follow us @SnowcodeDesign\n\n© 2021 Snowcode, LLC"
+        
+        var emojiString = ""
+        if #available(OSX 11.2.3, *) {
+            emojiString = "🪄 "
+        }
+        
+        aboutAlert.informativeText = "\(emojiString)keep your mac awake even when the lid is closed\n\n💭 whi·lom, meaning \"at times,\" having once been\n\n🎉 thanks for checking out our app! follow us @SnowcodeDesign\n\n© 2021 Snowcode, LLC"
         aboutAlert.addButton(withTitle: "👋 Sweet dreams!")
         aboutAlert.runModal()
     }
@@ -210,6 +238,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func launchAtLoginWhilom(_ sender: Any) {
         LaunchAtLogin.isEnabled = !LaunchAtLogin.isEnabled
         launchAtLoginItem.title = AppDelegate.launchAtLoginTitle
+    }
+    
+    @objc func changePasswordWhilom(_ sender: Any) {
+        showPasswordRememberAlert()
     }
     
     @objc func quitWhilom(_ sender: Any) -> Bool {
@@ -344,7 +376,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         alert.icon = NSImage(named: NSImage.Name("whilom"))
         alert.messageText = "Do you want us to remember your password for this session?"
-        alert.informativeText = "Otherwise, we'll ask every now and then when you use whilom."
+        alert.informativeText = "Otherwise, we'll ask when you try to use whilom."
         
         let passwordTextField = NSSecureTextField(string: "")
         passwordTextField.placeholderString = "\(NSUserName())'s local computer password"
@@ -416,7 +448,7 @@ extension AppDelegate: NSAlertDelegate {
         let help = NSAlert()
         help.icon = NSImage(named: NSImage.Name("whilom"))
         help.messageText = "What is this?"
-        help.informativeText = "whilom keeps your computer safe. stopping you mac from sleeping is a root-level command. instead of saving your secure information, we ask every time we launch to make sure you're always in control.\n\nwant this experience to be improved? we're always open to suggestions, reach out @SnowcodeDesign ❤️"
+        help.informativeText = "whilom keeps your computer safe. stopping you mac from sleeping is a root-level command. we lock your secure information in your mac's keychain, which means we only need to ask for your password when opening for the first time or after changing your password.\n\nwant this experience to be improved? we're open source, and we're always open to suggestions, reach out @SnowcodeDesign ❤️"
         help.runModal()
         
         return true
