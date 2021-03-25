@@ -87,19 +87,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var isSleepEnabled = true
     private var isJustMessingAround = false
   
-//    var enableSleepScript: NSAppleScript?
     private func buildEnableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
-        var shouldAppend = false
         if let pass = password {
-            shouldAppend = true
             appendString = " user name \"\(NSUserName())\" password \"\(pass)\""
         }
         
+        /**
+         # enable sleep script
+         # step one, kill existing noidle screen session
+         # step two, pmset enable sleep to allow computer to sleep
+         # step three, restore display and computer sleep energy prefs
+         # step four, restore screensaver time in prefs
+         */
+        let regex = #"^\\s*[0-9]+.whilom"#
         let myAppleScript = """
-        do shell script "! screen -X -S whilom quit && screen -S whilom -d -m pmset noidle && sudo pmset -a disablesleep 0"\(shouldAppend ? appendString : "") with administrator privileges
+        do shell script "screen -ls | egrep '\(regex)' | awk -F '.' '{print $1}' | xargs kill"
+
+        do shell script "sudo pmset -a disablesleep 0"\(appendString) with administrator privileges
+
         do shell script "defaults -currentHost write com.apple.screensaver idleTime `defaults -currentHost read com.insanj.whilom idleTime`"
+
+        do shell script "defaults -currentHost write com.apple.screensaver idleTime 0"
         """
+        
+        /*
+         
+         do shell script "sudo systemsetup -setcomputersleep `defaults -currentHost read com.insanj.whilom computerSleep`"\(appendString) with administrator privileges
+         do shell script "sudo systemsetup -setdisplaysleep `defaults -currentHost read com.insanj.whilom displaySleep`"\(appendString) with administrator privileges
+
+         */
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
             return nil
@@ -108,30 +125,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return scriptObject
     }
   
-//    var disableSleepScript: NSAppleScript?
     private func buildDisableSleepScript(_ password: String?=nil) -> NSAppleScript? {
         var appendString: String = ""
-        var shouldAppend = false
         if let pass = password {
-            shouldAppend = true
             appendString = " user name \"\(NSUserName())\" password \"\(pass)\""
         }
         
+        /**
+         # disable sleep script
+         # step one, run a detached screen session with pmset prevent idle, one of the most powerful commands
+         # step two, pmset disable sleep to prevent computer from completely sleeping
+         # step three, override display and computer sleep energy prefs, but first we must save them
+         # step four, override screensaver time in prefs, but we must check if null ifrst
+         */
         let myAppleScript = """
-        do shell script "! screen -X -S whilom quit && sudo pmset -a disablesleep 1"\(shouldAppend ? appendString : "") with administrator privileges
-        
-        do shell script "
-        if defaults -currentHost read com.apple.screensaver idleTime; then
-            defaults -currentHost write com.insanj.whilom idleTime `defaults -currentHost read com.apple.screensaver idleTime`
-            echo 'Saved custom screensaver time to com.insanj.whilom idleTime default'
-        else
-            defaults -currentHost write com.insanj.whilom idleTime 1200
-            echo 'Saved default screensaver time to com.insanj.whilom idleTime default'
-        fi
-        "
+        do shell script "screen -S whilom -d -m pmset noidle"
 
+        do shell script "sudo pmset -a disablesleep 1"\(appendString) with administrator privileges
+
+        do shell script "
+                if defaults -currentHost read com.apple.screensaver idleTime; then
+                    defaults -currentHost write com.insanj.whilom idleTime `defaults -currentHost read com.apple.screensaver idleTime`
+                    echo 'Saved custom screensaver time to com.insanj.whilom idleTime default'
+                else
+                    defaults -currentHost write com.insanj.whilom idleTime 1200
+                    echo 'Saved default screensaver time to com.insanj.whilom idleTime default'
+                fi
+        "
+        
         do shell script "defaults -currentHost write com.apple.screensaver idleTime 0"
         """
+        
+        /*
+         
+         do shell script "defaults -currentHost write com.insanj.whilom computerSleep `sudo systemsetup -getcomputersleep | cut -d ':' -f 2`"\(appendString) with administrator privileges
+         do shell script "sudo systemsetup -setcomputersleep Never"\(appendString) with administrator privileges
+
+         do shell script "defaults -currentHost write com.insanj.whilom displaySleep `sudo systemsetup -getdisplaysleep | cut -d ':' -f 2`"\(appendString) with administrator privileges
+         do shell script "sudo systemsetup -setdisplaysleep Never"\(appendString) with administrator privileges
+         
+         */
         
         guard let scriptObject = NSAppleScript(source: myAppleScript) else {
             return nil
