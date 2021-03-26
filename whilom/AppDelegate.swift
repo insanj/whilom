@@ -139,7 +139,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
          # step four, override screensaver time in prefs, but we must check if null ifrst
          */
         let myAppleScript = """
-        do shell script "screen -S whilom -d -m caffeinate -u"
+        do shell script "screen -S whilom -d -m caffeinate -d -i -m -u"
 
         do shell script "sudo pmset -a disablesleep 1"\(appendString) with administrator privileges
 
