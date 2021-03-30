@@ -1,7 +1,7 @@
 ![whilom_hero](https://user-images.githubusercontent.com/951011/110921325-6d258400-82ec-11eb-8f41-f8e83aa72c3e.png)
 
 <p align="center">
-  <a href="https://github.com/SnowcodeDesign/whilom/releases/download/0.3.2/whilom_0.3.2.zip">
+  <a href="https://github.com/SnowcodeDesign/whilom/releases/download/0.3.3/whilom_0.3.3.zip">
     <img align="left" width="62" height="62" src="favicon.ico">
     <h3 align="left">Download me now<br/>for free 💝</h3>
   </a>
